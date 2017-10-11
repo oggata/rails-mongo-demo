@@ -1,0 +1,102 @@
+<%= form_with(model: article, local: true) do |form| %>
+  <% if article.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(article.errors.count, "error") %> prohibited this article from being saved:</h2>
+
+      <ul>
+      <% article.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :title_jp %>
+    <%= form.text_field :title_jp, id: :article_title_jp %>
+  </div>
+
+  <div class="field">
+    <%= form.label :title_en %>
+    <%= form.text_field :title_en, id: :article_title_en %>
+  </div>
+
+  <div class="field">
+    <%= form.label :title_fre %>
+    <%= form.text_field :title_fre, id: :article_title_fre %>
+  </div>
+
+  <div class="field">
+    <%= form.label :title_ger %>
+    <%= form.text_field :title_ger, id: :article_title_ger %>
+  </div>
+
+  <div class="field">
+    <%= form.label :title_chi %>
+    <%= form.text_field :title_chi, id: :article_title_chi %>
+  </div>
+
+  <div class="field">
+    <%= form.label :title_ko %>
+    <%= form.text_field :title_ko, id: :article_title_ko %>
+  </div>
+
+  <div class="field">
+    <%= form.label :body_jp %>
+    <%= form.text_field :body_jp, id: :article_body_jp %>
+  </div>
+
+  <div class="field">
+    <%= form.label :body_en %>
+    <%= form.text_field :body_en, id: :article_body_en %>
+  </div>
+
+  <div class="field">
+    <%= form.label :body_fre %>
+    <%= form.text_field :body_fre, id: :article_body_fre %>
+  </div>
+
+  <div class="field">
+    <%= form.label :body_ger %>
+    <%= form.text_field :body_ger, id: :article_body_ger %>
+  </div>
+
+  <div class="field">
+    <%= form.label :body_chi %>
+    <%= form.text_field :body_chi, id: :article_body_chi %>
+  </div>
+
+  <div class="field">
+    <%= form.label :body_ko %>
+    <%= form.text_field :body_ko, id: :article_body_ko %>
+  </div>
+
+  <div class="field">
+    <%= form.label :url %>
+    <%= form.text_field :url, id: :article_url %>
+  </div>
+
+  <div class="field">
+    <%= form.label :genre_id %>
+    <%= form.text_field :genre_id, id: :article_genre_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :integer %>
+    <%= form.text_field :integer, id: :article_integer %>
+  </div>
+
+  <div class="field">
+    <%= form.label :contributor_name %>
+    <%= form.text_field :contributor_name, id: :article_contributor_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :image %>
+    <%= form.text_field :image, id: :article_image %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,59 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Articles</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title jp</th>
+      <th>Title en</th>
+      <th>Title fre</th>
+      <th>Title ger</th>
+      <th>Title chi</th>
+      <th>Title ko</th>
+      <th>Body jp</th>
+      <th>Body en</th>
+      <th>Body fre</th>
+      <th>Body ger</th>
+      <th>Body chi</th>
+      <th>Body ko</th>
+      <th>Url</th>
+      <th>Genre</th>
+      <th>Integer</th>
+      <th>Contributor name</th>
+      <th>Image</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @articles.each do |article| %>
+      <tr>
+        <td><%= article.title_jp %></td>
+        <td><%= article.title_en %></td>
+        <td><%= article.title_fre %></td>
+        <td><%= article.title_ger %></td>
+        <td><%= article.title_chi %></td>
+        <td><%= article.title_ko %></td>
+        <td><%= article.body_jp %></td>
+        <td><%= article.body_en %></td>
+        <td><%= article.body_fre %></td>
+        <td><%= article.body_ger %></td>
+        <td><%= article.body_chi %></td>
+        <td><%= article.body_ko %></td>
+        <td><%= article.url %></td>
+        <td><%= article.genre_id %></td>
+        <td><%= article.integer %></td>
+        <td><%= article.contributor_name %></td>
+        <td><%= article.image %></td>
+        <td><%= link_to 'Show', article %></td>
+        <td><%= link_to 'Edit', edit_article_path(article) %></td>
+        <td><%= link_to 'Destroy', article, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Article', new_article_path %>

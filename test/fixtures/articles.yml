@@ -1,0 +1,39 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title_jp: MyString
+  title_en: MyString
+  title_fre: MyString
+  title_ger: MyString
+  title_chi: MyString
+  title_ko: MyString
+  body_jp: MyString
+  body_en: MyString
+  body_fre: MyString
+  body_ger: MyString
+  body_chi: MyString
+  body_ko: MyString
+  url: MyString
+  genre_id: MyString
+  integer: MyString
+  contributor_name: MyString
+  image: MyString
+
+two:
+  title_jp: MyString
+  title_en: MyString
+  title_fre: MyString
+  title_ger: MyString
+  title_chi: MyString
+  title_ko: MyString
+  body_jp: MyString
+  body_en: MyString
+  body_fre: MyString
+  body_ger: MyString
+  body_chi: MyString
+  body_ko: MyString
+  url: MyString
+  genre_id: MyString
+  integer: MyString
+  contributor_name: MyString
+  image: MyString
