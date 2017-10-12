@@ -1,89 +1,91 @@
-<p id="notice"><%= notice %></p>
+<section class="breadcrumb-wrapper">
+  <ul class="breadcrumb">
+    <li itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"> <a href="/articles" itemprop="url">
+        <span itemprop="title">トップ</span>
+      </a> </li>
+    <li itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"> <span itemprop="title">詳細</span> </li>
+  </ul>
+</section>
+<div class="page-wrapper">
+  <div class="feature-articles-index">
+    <h1 class="title">
+      <%= @article_title %>
+    </h1>
+    <div>
+      <%= @article_body %>
+    </div>
+    <div>
+      <% @thumbnail_images.each do |thumbnail_image_url| %> 
+        <img src=<%= thumbnail_image_url %>/>
+        <% end %>
+    </div>
+    <div>
+      <%= @article.url %>
+    </div>
+    <div>
+      <%= @article.contributor_name %>
+    </div>
+  </div>
+  <div> <button type="button" class="btn btn-default">Default</button>
+    <!-- Primary --><button type="button" class="btn btn-primary">Primary</button>
+    <!-- Success --><button type="button" class="btn btn-success">Success</button>
+    <!-- Info --><button type="button" class="btn btn-info">Info</button>
+    <!-- Warning --><button type="button" class="btn btn-warning">Warning</button>
+    <!-- Danger --><button type="button" class="btn btn-danger">Danger</button>
+    <!-- Link --><button type="button" class="btn btn-link">Link</button> </div>
 
-<p>
-  <strong>Title jp:</strong>
-  <%= @article.title_jp %>
-</p>
+  <br><br><br>
+  <div class="comment-add">
+    <%= form_with(model: @comment, local: true) do |form| %>
+      <div class="field">
+        <%= form.label :comment %>
+          <%= form.text_field :comment, id: :comment_comment %>
+      </div>
+      <div class="field">
+        <%= form.label :contributor %>
+          <%= form.number_field :contributor, id: :comment_contributor %>
+      </div>
+      <div class="field">
+        <%= form.label :score %>
+          <%= form.number_field :score, id: :comment_score %>
+      </div>
 
-<p>
-  <strong>Title en:</strong>
-  <%= @article.title_en %>
-</p>
 
-<p>
-  <strong>Title fre:</strong>
-  <%= @article.title_fre %>
-</p>
+      <%= hidden_field :comment, :article_id %>
+       <%= hidden_field :comment, :article_url %>
 
-<p>
-  <strong>Title ger:</strong>
-  <%= @article.title_ger %>
-</p>
+      <div class="actions">
+        <%= form.submit %>
+      </div>
+      <% end %>
+  </div>
 
-<p>
-  <strong>Title chi:</strong>
-  <%= @article.title_chi %>
-</p>
+  <br><br><br>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Comment</th>
+        <th>Contributor</th>
+        <th>Score</th>
+      </tr>
+    </thead>
 
-<p>
-  <strong>Title ko:</strong>
-  <%= @article.title_ko %>
-</p>
+    <tbody>
+      <% @comments.each do |comment| %>
+        <tr>
+          <td><%= comment.comment %></td>
+          <td><%= comment.contributor %></td>
+          <td><%= comment.score %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
-<p>
-  <strong>Body jp:</strong>
-  <%= @article.body_jp %>
-</p>
 
-<p>
-  <strong>Body en:</strong>
-  <%= @article.body_en %>
-</p>
-
-<p>
-  <strong>Body fre:</strong>
-  <%= @article.body_fre %>
-</p>
-
-<p>
-  <strong>Body ger:</strong>
-  <%= @article.body_ger %>
-</p>
-
-<p>
-  <strong>Body chi:</strong>
-  <%= @article.body_chi %>
-</p>
-
-<p>
-  <strong>Body ko:</strong>
-  <%= @article.body_ko %>
-</p>
-
-<p>
-  <strong>Url:</strong>
-  <%= @article.url %>
-</p>
-
-<p>
-  <strong>Genre:</strong>
-  <%= @article.genre_id %>
-</p>
-
-<p>
-  <strong>Integer:</strong>
-  <%= @article.integer %>
-</p>
-
-<p>
-  <strong>Contributor name:</strong>
-  <%= @article.contributor_name %>
-</p>
-
-<p>
-  <strong>Image:</strong>
-  <%= @article.image %>
-</p>
-
-<%= link_to 'Edit', edit_article_path(@article) %> |
-<%= link_to 'Back', articles_path %>
+</div>
+</div>
+<div class="page-wrapper">
+  <div class="feature-articles-detail"> </div>
+</div>
+<%= link_to 'Edit', edit_article_path(@article) %>|
+  <%= link_to 'Back', articles_path %>

@@ -16,6 +16,8 @@ require "rails/test_unit/railtie"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
+
+
 module RailsMongoDemo
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
@@ -27,3 +29,6 @@ module RailsMongoDemo
     # -- all .rb files in that directory are automatically loaded.
   end
 end
+
+#assetがなくてもrailsしない
+#config.assets.unknown_asset_fallback = true

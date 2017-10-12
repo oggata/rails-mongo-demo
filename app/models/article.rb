@@ -1,3 +1,5 @@
+include Mongoid::Timestamps
+
 class Article
   include Mongoid::Document
   field :title_jp, type: String
@@ -13,8 +15,10 @@ class Article
   field :body_chi, type: String
   field :body_ko, type: String
   field :url, type: String
-  field :genre_id, type: String
-  field :integer, type: String
+  field :genre_id, type: Integer
+  field :contributor_id, type: String
   field :contributor_name, type: String
   field :image, type: String
+  field :created_at, type: Time, default: -> { Time.current }
+  field :updated_at, type: Time, default: -> { Time.current }
 end
