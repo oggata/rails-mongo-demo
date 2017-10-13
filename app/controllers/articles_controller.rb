@@ -4,8 +4,18 @@ class ArticlesController < ApplicationController
   # GET /articles
   # GET /articles.json
   def index
-    #@articles = Article.all.desc(:created_at).limit(20)
-    @articles = Article.desc(:created_at).limit(20)
+    current_page_num = params[:page]
+    if !current_page_num then
+      current_page_num = 1
+    end
+    row_per_page = 20
+    skip_cnt = row_per_page * (current_page_num.to_i - 1)
+
+    @current_page_num = current_page_num
+    #raise page.inspect
+    #@articles = Article.desc(:created_at).limit(20)
+    @articles = Article.skip(skip_cnt).limit(row_per_page)
+    #@articles = Article.all
     @todays_articles = [];
     for article in @articles do
       images_hash=JSON.parse(article.image)

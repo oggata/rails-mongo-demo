@@ -27,13 +27,13 @@
 
 <div class="text-center">
   <ul class="pagination pagination-lg">
-
     <li class="disabled"><span><<</span></li>
-    <li class="active"><span>1</span></li>
-    <li><a href="#">2</a></li>
-    <li><a href="#">3</a></li>
-    <li><a href="#">4</a></li>
-    <li><a href="#">>></a></li>
+    <li><a href="/articles?page=<%= @current_page_num.to_i - 2 %>"><%= @current_page_num.to_i - 2 %></a></li>
+    <li><a href="/articles?page=<%= @current_page_num.to_i - 1 %>"><%= @current_page_num.to_i - 1 %></a></li>
+    <li class="active"><span><%= @current_page_num %></span></li>
+    <li><a href="/articles?page=<%= @current_page_num.to_i + 1 %>"><%= @current_page_num.to_i + 1 %></a></li>
+    <li><a href="/articles?page=<%= @current_page_num.to_i + 2 %>"><%= @current_page_num.to_i + 2 %></a></li>
+    <li class="disabled"><span>>></span></li>
   </ul>
 </div>
 
