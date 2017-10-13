@@ -1,91 +1,39 @@
-<div class="jumbotron">
-　<div class="container">
-　　<h1>test!</h1>
-　　<p>...</p>
-　　<p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
-　</div> <!-- /container -->    
+<div class="jumbotron"
+  style="color:#FFF"; background:url(hoge.jpg);background-size:cover;
+>
+<h1>test</h1>
+<p>hogehoge<p>
 </div>
 
 
-<button type="button" class="btn btn-default">Default</button>
-<!-- Primary -->
-<button type="button" class="btn btn-primary">Primary</button>
-<!-- Success -->
-<button type="button" class="btn btn-success">Success</button>
-<!-- Info -->
-<button type="button" class="btn btn-info">Info</button>
-<!-- Warning -->
-<button type="button" class="btn btn-warning">Warning</button>
-<!-- Danger -->
-<button type="button" class="btn btn-danger">Danger</button>
-<!-- Link -->
-<button type="button" class="btn btn-link">Link</button>
-
-  <ul class="nav nav-tabs">
-    <li class="active"><a href="#">Home</a></li>
-    <li><a href="#">Profile</a></li>
-    <li><a href="#">Messages</a></li>
-  </ul>
-
-<div id="header" style="background:black;">header</div>
-<div class="row">
-    <div class="col-sm-4" style="background-color:blue">Main 1 </div>
-    <div class="col-sm-4" style="background-color:yellow">Main 2 </div>
-    <div class="col-sm-4" style="background-color:red">Main 3 </div>
-</div>
-
-<%= link_to 'New User', class:"btn btn-primary" %>
+<h1 class="page-header">what's new</h1>
 
 <p id="notice"><%= notice %></p>
 
-<h1>Todays</h1>
 
-<table>
-  <tbody>
-    <% @todays_articles.each do |article| %>
-      <tr>
-        <td><a href="/articles/<%= article['id'] %>"><img width="150" src=<%= article['thumbnail_url'] %> /></a></td>
-        <td><a href="/articles/<%= article['id'] %>"><%= article['title_jp'] %></a></td>
-        <td><%= article['body_jp'] %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<% @todays_articles.each do |article| %>
+<div class="media">
+  <a href="/articles/<%= article['id'] %>" class="media-left">
+    <img src=<%= article['thumbnail_url'] %> class="img-rounded" width="150">
+  </a>
+  <div class="media-body">
+    <h3 class="media-heading">
+      <a href="/articles/<%= article['id'] %>"><%= article['title_jp'] %></a>
+    </h3>
+    <%= article['body_jp'] %>
+  </div>
+</div>
+<% end %>
 
-<br>
+<div class="text-center">
+  <ul class="pagination pagination-lg">
 
-
-<h1>Weekly</h1>
-
-
-<table>
-
-  <tbody>
-    <% @articles.each do |article| %>
-      <tr>
-        <td><%= article.title_jp %></td>
-        <td><%= article.body_jp %></td>
-        <td><%= link_to 'Show', article %></td>
-        <td><%= link_to 'Edit', edit_article_path(article) %></td>
-        <td><%= link_to 'Destroy', article, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<%= link_to 'New Article', new_article_path %>
-
-
-<div class="dropdown">
-  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-    ドロップダウン
-    <span class="caret"></span>
-  </button>
-  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-    <li><a href="#">メニュー1</a></li>
-    <li><a href="#">メニュー2</a></li>
-    <li><a href="#">メニュー3</a></li>
-    <li><a href="#">メニュー4</a></li>
+    <li class="disabled"><span><<</span></li>
+    <li class="active"><span>1</span></li>
+    <li><a href="#">2</a></li>
+    <li><a href="#">3</a></li>
+    <li><a href="#">4</a></li>
+    <li><a href="#">>></a></li>
   </ul>
 </div>
 

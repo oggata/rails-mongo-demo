@@ -8,7 +8,8 @@ class Tasks::Batch
     # 実行したいコードを書く
     p "Hello world"
 
-
+    target_url = ENV['BATCH_TARGET_URL']
+    target_path = ENV['BATCH_TARGET_PATH']
 
 	Anemone.crawl(target_url,depth_limit: 10,:delay => 1,:skip_query_strings => false) do |anemone|
 

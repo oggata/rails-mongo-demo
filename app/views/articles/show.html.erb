@@ -1,91 +1,59 @@
 <section class="breadcrumb-wrapper">
   <ul class="breadcrumb">
-    <li itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"> <a href="/articles" itemprop="url">
+    <li itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"> 
+      <a href="/articles" itemprop="url">
         <span itemprop="title">トップ</span>
-      </a> </li>
+      </a>
+    </li>
     <li itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"> <span itemprop="title">詳細</span> </li>
   </ul>
 </section>
-<div class="page-wrapper">
-  <div class="feature-articles-index">
-    <h1 class="title">
-      <%= @article_title %>
-    </h1>
-    <div>
-      <%= @article_body %>
-    </div>
-    <div>
+
+<h1 class="page-header"><%= @article_title %></h1>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h2 class="panel-title"><%= @article_body %></h2>
+  </div>
+  <div class="panel-body">
+    <p></p>
       <% @thumbnail_images.each do |thumbnail_image_url| %> 
-        <img src=<%= thumbnail_image_url %>/>
-        <% end %>
-    </div>
-    <div>
-      <%= @article.url %>
-    </div>
-    <div>
-      <%= @article.contributor_name %>
-    </div>
+        <img src=<%= thumbnail_image_url %> />
+      <% end %>
   </div>
-  <div> <button type="button" class="btn btn-default">Default</button>
-    <!-- Primary --><button type="button" class="btn btn-primary">Primary</button>
-    <!-- Success --><button type="button" class="btn btn-success">Success</button>
-    <!-- Info --><button type="button" class="btn btn-info">Info</button>
-    <!-- Warning --><button type="button" class="btn btn-warning">Warning</button>
-    <!-- Danger --><button type="button" class="btn btn-danger">Danger</button>
-    <!-- Link --><button type="button" class="btn btn-link">Link</button> </div>
+  <div class="panel-footer text-right"><%= @article.url %></div>
+</div>
 
-  <br><br><br>
-  <div class="comment-add">
-    <%= form_with(model: @comment, local: true) do |form| %>
+<div>
+    <form action="/comments" accept-charset="UTF-8" method="post">
       <div class="field">
-        <%= form.label :comment %>
-          <%= form.text_field :comment, id: :comment_comment %>
+        <label for="comment_comment">Comment</label>
+          <input class="form-control" id="comment_comment" type="text" name="comment[comment]" />
       </div>
       <div class="field">
-        <%= form.label :contributor %>
-          <%= form.number_field :contributor, id: :comment_contributor %>
+        <label for="comment_contributor">Contributor</label>
+          <input class="form-control" id="comment_contributor" type="number" name="comment[contributor]" />
       </div>
-      <div class="field">
-        <%= form.label :score %>
-          <%= form.number_field :score, id: :comment_score %>
-      </div>
-
-
-      <%= hidden_field :comment, :article_id %>
-       <%= hidden_field :comment, :article_url %>
-
+      <input type="hidden" value=<%= @comment.article_id %> name="comment[article_id]" id="comment_article_id" />
+      <input type="hidden" value=<%= @comment.article_url %> name="comment[article_url]" id="comment_article_url" />
+       <br>
       <div class="actions">
-        <%= form.submit %>
+        <input type="submit" class="btn btn-primary" name="commit" value="Create Comment" data-disable-with="Create Comment" />
       </div>
-      <% end %>
+  </form>
+</div>
+
+<br>
+
+<div>
+<% @comments.each do |comment| %>
+<div class="media">
+  <div class="well">
+    <img src="/assets/profile.jpeg" width="80" class="img-responsive img-circle" >
+    <%= comment.comment %>
   </div>
-
-  <br><br><br>
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>Comment</th>
-        <th>Contributor</th>
-        <th>Score</th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% @comments.each do |comment| %>
-        <tr>
-          <td><%= comment.comment %></td>
-          <td><%= comment.contributor %></td>
-          <td><%= comment.score %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-
-
+<% end %>
 </div>
-</div>
-<div class="page-wrapper">
-  <div class="feature-articles-detail"> </div>
-</div>
+
 <%= link_to 'Edit', edit_article_path(@article) %>|
-  <%= link_to 'Back', articles_path %>
+<%= link_to 'Back', articles_path %>

@@ -1,4 +1,4 @@
-include Mongoid::Timestamps
+#include Mongoid::Timestamps
 
 class Article
   include Mongoid::Document
