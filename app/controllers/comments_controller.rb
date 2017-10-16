@@ -25,16 +25,27 @@ class CommentsController < ApplicationController
   # POST /comments.json
   def create
     @comment = Comment.new(comment_params)
-
+    if @comment.save
+      #redirect_to　controller: :articles, action: :index
+      redirect_to article_url(id: params["comment"]["article_id"])
+    else
+      #render :action => "new"
+      redirect_to article_url(id: params["comment"]["article_id"])
+      #redirect_to("http://hogehoge", status: 301)
+    end
+=begin
     respond_to do |format|
       if @comment.save
-        format.html { redirect_to @comment, notice: 'Comment was successfully created.' }
-        format.json { render :show, status: :created, location: @comment }
+        #redirect_to("http://new.home", status: 301)
+        #format.html { redirect_to @comment, notice: 'Comment was successfully created.' }
+        #format.json { render :show, status: :created, location: @comment }
       else
-        format.html { render :new }
+        #format.html { render :new }
         format.json { render json: @comment.errors, status: :unprocessable_entity }
       end
+      #redirect_to controller: 'articles', action: 'show'
     end
+=end
   end
 
   # PATCH/PUT /comments/1

@@ -4,6 +4,14 @@ class ArticlesController < ApplicationController
   # GET /articles
   # GET /articles.json
   def index
+
+    #言語取得
+    path_dir = request.path_info
+    #raise path_dir.inspect
+    if path_dir == "/en"
+    end
+
+    #ページ取得
     current_page_num = params[:page]
     if !current_page_num then
       current_page_num = 1
@@ -13,8 +21,7 @@ class ArticlesController < ApplicationController
 
     @current_page_num = current_page_num
     #raise page.inspect
-    #@articles = Article.desc(:created_at).limit(20)
-    @articles = Article.skip(skip_cnt).limit(row_per_page)
+    @articles = Article.desc(:created_at).skip(skip_cnt).limit(row_per_page)
     #@articles = Article.all
     @todays_articles = [];
     for article in @articles do
@@ -23,7 +30,7 @@ class ArticlesController < ApplicationController
       images_hash.each{|key, value|
         thumbnail_url = value.html_safe
       }
-      @todays_article = { 'id' => article.id,'title_jp' => article.title_jp, 'body_jp' => article.body_jp[0,100], 'thumbnail_url' => thumbnail_url}
+      @todays_article = { 'id' => article.id,'title_jp' => article.title_jp[0,40], 'body_jp' => article.body_jp[0,100], 'thumbnail_url' => thumbnail_url}
       @todays_articles.push(@todays_article);
     end
   end
@@ -45,6 +52,7 @@ class ArticlesController < ApplicationController
     @comment = Comment.new
     @comment.article_id = @article.id;
     @comment.article_url = @article.url;
+
     #記事コメント一覧
     @comments = []
     begin
@@ -52,8 +60,16 @@ class ArticlesController < ApplicationController
       @comments = Comment.all.where(:article_id => @article.id)
     rescue Exception => e
     end
-
     comment = @comments
+
+    #関連記事取得
+    @related_articles = []
+    begin
+      @related_articles = Article.desc(:created_at).limit(5)
+    rescue Exception => e
+    end
+
+
 
   end
 

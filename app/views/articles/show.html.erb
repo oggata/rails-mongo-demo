@@ -9,6 +9,10 @@
   </ul>
 </section>
 
+
+<div class="col-xs-9">
+
+
 <h1 class="page-header"><%= @article_title %></h1>
 
 <div class="panel panel-default">
@@ -26,6 +30,9 @@
 
 <div>
     <form action="/comments" accept-charset="UTF-8" method="post">
+
+      <div class="col-xs-1"><img src="/assets/profile.jpeg" width="50" class="img-responsive img-circle" ></div>
+
       <div class="field">
         <label for="comment_comment">Comment</label>
           <input class="form-control" id="comment_comment" type="text" name="comment[comment]" />
@@ -47,13 +54,12 @@
 
 <div>
 <% @comments.each do |comment| %>
-<div class="media">
-  <div class="well">
-    <img src="/assets/profile.jpeg" width="80" class="img-responsive img-circle" >
-    <%= comment.comment %>
-  </div>
+  <div class="col-xs-1"><img src="/assets/profile.jpeg" width="50" class="img-responsive img-circle" ></div>
+  <div class="col-xs-11"><%= comment.comment %></div>
 <% end %>
 </div>
 
 <%= link_to 'Edit', edit_article_path(@article) %>|
 <%= link_to 'Back', articles_path %>
+
+</div>

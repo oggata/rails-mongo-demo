@@ -1,45 +1,47 @@
-<div class="jumbotron"
-  style="color:#FFF"; background:url(hoge.jpg);background-size:cover;
->
-<h1>test</h1>
+<div class="jumbotron" style="height:300;background:url('./assets/demo.jpg');background-size:cover;" >
+  <div class="container" style="height: 400px;">
+<h1>test1</h1>
 <p>hogehoge<p>
-</div>
-
-
-<h1 class="page-header">what's new</h1>
-
-<p id="notice"><%= notice %></p>
-
-
-<% @todays_articles.each do |article| %>
-<div class="media">
-  <a href="/articles/<%= article['id'] %>" class="media-left">
-    <img src=<%= article['thumbnail_url'] %> class="img-rounded" width="150">
-  </a>
-  <div class="media-body">
-    <h3 class="media-heading">
-      <a href="/articles/<%= article['id'] %>"><%= article['title_jp'] %></a>
-    </h3>
-    <%= article['body_jp'] %>
   </div>
 </div>
-<% end %>
 
-<div class="text-center">
-  <ul class="pagination pagination-lg">
-    <li class="disabled"><span><<</span></li>
-    <li><a href="/articles?page=<%= @current_page_num.to_i - 2 %>"><%= @current_page_num.to_i - 2 %></a></li>
-    <li><a href="/articles?page=<%= @current_page_num.to_i - 1 %>"><%= @current_page_num.to_i - 1 %></a></li>
-    <li class="active"><span><%= @current_page_num %></span></li>
-    <li><a href="/articles?page=<%= @current_page_num.to_i + 1 %>"><%= @current_page_num.to_i + 1 %></a></li>
-    <li><a href="/articles?page=<%= @current_page_num.to_i + 2 %>"><%= @current_page_num.to_i + 2 %></a></li>
-    <li class="disabled"><span>>></span></li>
-  </ul>
+
+<div class="col-xs-9">
+
+
+      <h1 class="page-header">what's new</h1>
+
+      <p id="notice"><%= notice %></p>
+
+
+      <% @todays_articles.each do |article| %>
+      <div class="media">
+        <a href="/articles/<%= article['id'] %>" class="media-left">
+          <img src=<%= article['thumbnail_url'] %> class="img-rounded" width="150">
+        </a>
+        <div class="media-body">
+          <h3 class="media-heading">
+            <a href="/articles/<%= article['id'] %>"><%= article['title_jp'] %></a>
+          </h3>
+          <%= article['body_jp'] %>
+        </div>
+      </div>
+      <% end %>
+
+      <div class="text-center">
+        <ul class="pagination pagination-lg">
+          <li class="disabled"><span><<</span></li>
+          <li><a href="/articles?page=<%= @current_page_num.to_i - 2 %>"><%= @current_page_num.to_i - 2 %></a></li>
+          <li><a href="/articles?page=<%= @current_page_num.to_i - 1 %>"><%= @current_page_num.to_i - 1 %></a></li>
+          <li class="active"><span><%= @current_page_num %></span></li>
+          <li><a href="/articles?page=<%= @current_page_num.to_i + 1 %>"><%= @current_page_num.to_i + 1 %></a></li>
+          <li><a href="/articles?page=<%= @current_page_num.to_i + 2 %>"><%= @current_page_num.to_i + 2 %></a></li>
+          <li class="disabled"><span>>></span></li>
+        </ul>
+      </div>
+
+
 </div>
+<div class="col-xs-3">AD</div>
 
-<div class="footer">
-    <ul>
-      <li>ああああ</li>
-    </ul>
-  </div>
-</footer>
+
