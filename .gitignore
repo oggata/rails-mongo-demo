@@ -17,7 +17,7 @@
 /yarn-error.log
 
 .env
-
+/db/
 /vendor/
 /tmp/
 /log/

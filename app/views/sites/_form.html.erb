@@ -1,0 +1,69 @@
+<%= form_with(model: site, local: true) do |form| %>
+  <% if site.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(site.errors.count, "error") %> prohibited this site from being saved:</h2>
+
+      <ul>
+      <% site.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title, id: :site_title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_field :description, id: :site_description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :url %>
+    <%= form.text_field :url, id: :site_url %>
+  </div>
+
+  <div class="field">
+    <%= form.label :target_path %>
+    <%= form.text_field :target_path, id: :site_target_path %>
+  </div>
+
+  <div class="field">
+    <%= form.label :category_name %>
+    <%= form.text_field :category_name, id: :site_category_name %>
+  </div>
+
+
+  <div class="field">
+    <%= form.label :tag1 %>
+    <%= form.text_field :tag1, id: :site_tag1 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :tag2 %>
+    <%= form.text_field :tag2, id: :site_tag2 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :tag3 %>
+    <%= form.text_field :tag3, id: :site_tag3 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :tag4 %>
+    <%= form.text_field :tag4, id: :site_tag4 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :tag5 %>
+    <%= form.text_field :tag5, id: :site_tag5 %>
+  </div>
+
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

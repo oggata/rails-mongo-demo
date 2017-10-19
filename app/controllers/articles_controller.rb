@@ -18,21 +18,11 @@ class ArticlesController < ApplicationController
     end
     row_per_page = 20
     skip_cnt = row_per_page * (current_page_num.to_i - 1)
-
     @current_page_num = current_page_num
-    #raise page.inspect
-    @articles = Article.desc(:created_at).skip(skip_cnt).limit(row_per_page)
-    #@articles = Article.all
-    @todays_articles = [];
-    for article in @articles do
-      images_hash=JSON.parse(article.image)
-      thumbnail_url = "";
-      images_hash.each{|key, value|
-        thumbnail_url = value.html_safe
-      }
-      @todays_article = { 'id' => article.id,'title_jp' => article.title_jp[0,40], 'body_jp' => article.body_jp[0,100], 'thumbnail_url' => thumbnail_url}
-      @todays_articles.push(@todays_article);
-    end
+    @todays_articles = Article.getTodaysArticles(skip_cnt,row_per_page);
+
+
+    #raise @todays_articles.inspect
   end
 
   # GET /articles/1
@@ -43,34 +33,20 @@ class ArticlesController < ApplicationController
     images_hash.each{|key, value|
       @thumbnail_images.push(value.html_safe);
     }
-    #raise @thumbnail_images[0].inspect
-    #@test = 100
-    @article_title = @article.title_jp;
-    @article_body = @article.body_jp;
-
     #記事コメント入力
     @comment = Comment.new
     @comment.article_id = @article.id;
     @comment.article_url = @article.url;
 
+    @related_articles = Article.getRelatedArticles();
+
     #記事コメント一覧
     @comments = []
     begin
-      #@comments = Comment.find_by(:article_id => @article.id)
       @comments = Comment.all.where(:article_id => @article.id)
     rescue Exception => e
     end
     comment = @comments
-
-    #関連記事取得
-    @related_articles = []
-    begin
-      @related_articles = Article.desc(:created_at).limit(5)
-    rescue Exception => e
-    end
-
-
-
   end
 
   # GET /articles/new

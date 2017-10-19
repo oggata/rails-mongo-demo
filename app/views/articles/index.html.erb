@@ -5,25 +5,25 @@
   </div>
 </div>
 
+<ul class="nav nav-tabs">
+  <li class="active"><a href="#">Home</a></li>
+  <li><a href="#">すべて</a></li>
+  <li><a href="#">暮らし</a></li>
+  <li><a href="#">エンタメ</a></li>
+  <li><a href="#">学び</a></li>
+  <li><a href="#">画像</a></li>
+  <li><a href="#">動画</a></li>
+  <li><a href="#">グッズ</a></li>
+</ul>
 
-<div class="col-xs-9">
-
-
+    <div class="col-xs-9">
       <h1 class="page-header">what's new</h1>
-
       <p id="notice"><%= notice %></p>
-
-
       <% @todays_articles.each do |article| %>
       <div class="media">
-        <a href="/articles/<%= article['id'] %>" class="media-left">
-          <img src=<%= article['thumbnail_url'] %> class="img-rounded" width="150">
-        </a>
+        <a href="/articles/<%= article['id'] %>" class="media-left"><img src=<%= article['thumbnail_url'] %> class="img-rounded" width="150"></a>
         <div class="media-body">
-          <h3 class="media-heading">
-            <a href="/articles/<%= article['id'] %>"><%= article['title_jp'] %></a>
-          </h3>
-          <%= article['body_jp'] %>
+          <h3 class="media-heading"><a href="/articles/<%= article['id'] %>"><%= article['title_jp'] %></a></h3><%= article['body_jp'] %>(<%= article['site_name'] %>)
         </div>
       </div>
       <% end %>
@@ -31,17 +31,31 @@
       <div class="text-center">
         <ul class="pagination pagination-lg">
           <li class="disabled"><span><<</span></li>
+<% if @current_page_num.to_i - 2 >= 1 then %>
           <li><a href="/articles?page=<%= @current_page_num.to_i - 2 %>"><%= @current_page_num.to_i - 2 %></a></li>
+<% end %>
+
+<% if @current_page_num.to_i - 1 >= 1 then %>
           <li><a href="/articles?page=<%= @current_page_num.to_i - 1 %>"><%= @current_page_num.to_i - 1 %></a></li>
+<% end %>
           <li class="active"><span><%= @current_page_num %></span></li>
           <li><a href="/articles?page=<%= @current_page_num.to_i + 1 %>"><%= @current_page_num.to_i + 1 %></a></li>
           <li><a href="/articles?page=<%= @current_page_num.to_i + 2 %>"><%= @current_page_num.to_i + 2 %></a></li>
           <li class="disabled"><span>>></span></li>
         </ul>
       </div>
-
-
 </div>
-<div class="col-xs-3">AD</div>
+<div class="col-xs-3">
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- catalog-right -->
+  <ins class="adsbygoogle"
+       style="display:inline-block;width:300px;height:600px"
+       data-ad-client="ca-pub-0308249287821909"
+       data-ad-slot="9115881548"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</div>
 
 
