@@ -10,24 +10,20 @@
 </section>
 
 
+
 <div class="col-xs-9">
-
 <h1 class="page-header"><%= @article.title %></h1>
-
 <div class="panel panel-default">
   <div class="panel-heading">
     <h2 class="panel-title"><%= @article.body[0,500] %></h2>
   </div>
-
   <div class="panel-body">
     <p></p>
       <% @thumbnail_images.each do |thumbnail_image_url| %> 
         <img src=<%= thumbnail_image_url %> />
       <% end %>
   </div>
-
   <a href=<%= @article.url %> class="btn btn-primary btn-lg btn-block" role="button" target="_blank">続きを読む</a>
-
   <div class="panel-footer text-right"><a href="<%= @article.url %>">引用元：<%= @article.site_name %></a></div>
 </div>
 
@@ -47,7 +43,7 @@
   </div>
 </div>
 <% end %>
-
+</div>
 
 <div class="col-xs-3">
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>

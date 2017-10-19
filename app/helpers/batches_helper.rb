@@ -5,7 +5,7 @@ module BatchesHelper
   	pp ">>>>>>>>"
   end
 
-  def self.openUrlAndSaveArticle(article,url,title,origin_page_title,orgin_page_url,origin_catgory_name)
+  def self.openUrlAndSaveArticle(article,url,title,origin_page_title,orgin_page_url,origin_catgory_name,tags)
 	open(url, 'User-Agent' => 'Googlebot/2.1') do |io|
 		html = io.read
 		#本文抽出
@@ -31,7 +31,7 @@ module BatchesHelper
 		end
 		article.image = image_hash.to_json
 
-		@article_tags = ["猫","ネコ"]
+		@article_tags = tags
 		article.title = title
 		article.body = body
 		article.description = body

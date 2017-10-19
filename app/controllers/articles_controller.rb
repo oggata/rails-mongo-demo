@@ -11,6 +11,9 @@ class ArticlesController < ApplicationController
     if path_dir == "/en"
     end
 
+    #カテゴリ取得
+    tag = params[:tag]
+
     #ページ取得
     current_page_num = params[:page]
     if !current_page_num then
