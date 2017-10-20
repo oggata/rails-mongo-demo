@@ -54,7 +54,7 @@ class Article
       images_hash.each{|key, value|
         thumbnail_url = value.html_safe
       }
-      @todays_article = { 'id' => article.id,'title_jp' => article.title[0,20], 'body_jp' => article.body[0,200], 'thumbnail_url' => thumbnail_url, 'site_name' => article.site_name}
+      @todays_article = { 'id' => article.id,'title' => article.title[0,20], 'body' => article.body[0,200], 'thumbnail_url' => thumbnail_url, 'site_name' => article.site_name}
       @todays_articles.push(@todays_article);
     end
     return @todays_articles
@@ -69,7 +69,7 @@ class Article
       images_hash.each{|key, value|
         thumbnail_url = value.html_safe
       }
-      @related_article = { 'id' => article.id,'title_jp' => article.title[0,20], 'body_jp' => article.body[0,200], 'thumbnail_url' => thumbnail_url, 'site_name' => article.site_name}
+      @related_article = { 'id' => article.id,'title' => article.title[0,20], 'body' => article.body[0,200], 'thumbnail_url' => thumbnail_url, 'site_name' => article.site_name}
       @related_articles.push(@related_article);
     end
     return @related_articles
