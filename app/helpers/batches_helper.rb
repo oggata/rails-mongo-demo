@@ -10,8 +10,6 @@ module BatchesHelper
 		html = io.read
 		#本文抽出
 		body, title = ExtractContent.analyse(html)
-		article.title_jp = title
-		article.body_jp = body
 		article.contributor_name = "xxx"
 		article.url = url
 		#画像操作

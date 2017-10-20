@@ -9,13 +9,11 @@
   </ul>
 </section>
 
-
-
 <div class="col-xs-9">
 <h1 class="page-header"><%= @article.title %></h1>
 <div class="panel panel-default">
   <div class="panel-heading">
-    <h2 class="panel-title"><%= @article.body[0,500] %></h2>
+    <h2 class="panel-title"><%= @article.body[0,400] %></h2>
   </div>
   <div class="panel-body">
     <p></p>
@@ -39,7 +37,7 @@
 <div class="media">
   <a href="/articles/<%= related_article['id'] %>" class="media-left"><img src=<%= related_article['thumbnail_url'] %> class="img-rounded" width="150"></a>
   <div class="media-body">
-    <h3 class="media-heading"><a href="/articles/<%= related_article['id'] %>"><%= related_article['title_jp'] %></a></h3><%= related_article['body_jp'] %><%= related_article['site_name'] %>
+    <h3 class="media-heading"><a href="/articles/<%= related_article['id'] %>"><%= related_article['title'] %></a></h3><%= related_article['body'] %><%= related_article['site_name'] %>
   </div>
 </div>
 <% end %>

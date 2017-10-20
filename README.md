@@ -25,7 +25,7 @@ Things you may want to cover:
 
 
 #batch
-#rails runner Tasks::Batch.execute
+#bundle exec rails runner Tasks::Batch.execute
 
 #seed
 bundle exec rake db:seed

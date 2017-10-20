@@ -2,38 +2,26 @@
 
 class Article
   include Mongoid::Document
-  field :title_jp, type: String
-  field :title_en, type: String
-  field :title_fre, type: String
-  field :title_ger, type: String
-  field :title_chi, type: String
-  field :title_ko, type: String
-  field :body_jp, type: String
-  field :body_en, type: String
-  field :body_fre, type: String
-  field :body_ger, type: String
-  field :body_chi, type: String
-  field :body_ko, type: String
-  field :url, type: String
-  field :genre_id, type: Integer
-  field :contributor_id, type: String
-  field :contributor_name, type: String
-  field :image, type: String
-  field :created_at, type: Time, default: -> { Time.current }
-  field :updated_at, type: Time, default: -> { Time.current }
   field :title, type: String
   field :body,  type: String
+  field :url, type: String
   field :description , type:String
+  field :keywords, type: Array
   field :tags, type: Array
   field :site_name, type:String
+  field :contributor_id, type: String
+  field :contributor_name, type: String
   field :category_id, type: String
   field :category_name, type: String
+  field :image, type: String
   field :images, type: Array
   field :movies, type: Array
   field :pageview, type: Integer
   field :ranking_number, type: Integer
   field :weight,  type: String
   field :isHidden, type: Boolean
+  field :created_at, type: Time, default: -> { Time.current }
+  field :updated_at, type: Time, default: -> { Time.current }
 
   def self.getTodaysArticles(skip_cnt,row_per_page)
     @articles = Article.where(:weight.gte => 2).desc(:created_at).skip(skip_cnt).limit(row_per_page)
@@ -43,12 +31,10 @@ class Article
       artcle_image_txt = "";
       if article.images != nil
         for artcle_image in article.images do
-          #print("Color = " + artcle_image + "¥n")
           artcle_image_txt = artcle_image;
         end
         #raise article.images.inspect
       end
-
       images_hash=JSON.parse(article.image)
       thumbnail_url = "";
       images_hash.each{|key, value|
@@ -59,6 +45,29 @@ class Article
     end
     return @todays_articles
   end
+
+  def self.getTodaysArticlesByTag(tag,skip_cnt,row_per_page)
+    @articles = Article.where(:weight.gte => 2).desc(:created_at).skip(skip_cnt).limit(row_per_page)
+    #@articles = Article.all
+    @todays_articles = [];
+    for article in @articles do
+      artcle_image_txt = "";
+      if article.images != nil
+        for artcle_image in article.images do
+          artcle_image_txt = artcle_image;
+        end
+      end
+      images_hash=JSON.parse(article.image)
+      thumbnail_url = "";
+      images_hash.each{|key, value|
+        thumbnail_url = value.html_safe
+      }
+      @todays_article = { 'id' => article.id,'title' => article.title[0,20], 'body' => article.body[0,200], 'thumbnail_url' => thumbnail_url, 'site_name' => article.site_name}
+      @todays_articles.push(@todays_article);
+    end
+    return @todays_articles
+  end
+
 
   def self.getRelatedArticles()
     @articles = Article.where(:weight.gte => 2).desc(:created_at).skip(0).limit(5)

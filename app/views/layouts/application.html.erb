@@ -1,9 +1,23 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>CATLOG</title>
+    <title><%= title_logo %></title>
     <meta charset="utf-8">
     <meta name="viewset" content="width=device-width, initial-scale=1">
+
+    <%# test %>
+    <meta charset="UTF-8">
+    <meta name="catlog:page_id" content="<%= current_page_id %>">
+    <meta name="catlog:pv_id" content="<%= pv_id %>">
+    <meta name="description" content="<%= default_description %>">
+    <meta name="keywords" content="<%= meta_keywords %>">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:title" content="<%= title %>">
+    <meta property="og:type" content="<%= website %>">
+    <meta property="og:image" content="<%= og_image %>">
+    <meta property="og:url" content="<%= og_url %>">
+    <meta property="og:description" content="<%= default_og_description %>">
+    <meta property="og:site_name" content="<%= title %>">
   </head>
   <body>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -12,7 +26,7 @@
   <div class="container-fluid">
   <!-- ヘッダー部分 ================ -->
     <div class="navbar-header">
-      <a class="navbar-brand" href="/">CATLOG</a>
+      <a class="navbar-brand" href="/"><%= title_logo %></a>
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav_target">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>

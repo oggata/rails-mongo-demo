@@ -1,6 +1,5 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :edit, :update, :destroy]
-
   # GET /articles
   # GET /articles.json
   def index
@@ -22,9 +21,13 @@ class ArticlesController < ApplicationController
     row_per_page = 20
     skip_cnt = row_per_page * (current_page_num.to_i - 1)
     @current_page_num = current_page_num
-    @todays_articles = Article.getTodaysArticles(skip_cnt,row_per_page);
 
-
+    if !tag then
+      @todays_articles = Article.getTodaysArticles(skip_cnt,row_per_page);
+    else
+      @todays_articles = Article.getTodaysArticles(skip_cnt,row_per_page);
+    end
+    
     #raise @todays_articles.inspect
   end
 
