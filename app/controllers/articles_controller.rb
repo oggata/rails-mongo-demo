@@ -10,6 +10,8 @@ class ArticlesController < ApplicationController
     if path_dir == "/en"
     end
 
+    @title = title;
+
     #カテゴリ取得
     tag = params[:tag]
 
@@ -28,6 +30,7 @@ class ArticlesController < ApplicationController
       @todays_articles = Article.getTodaysArticles(skip_cnt,row_per_page);
     end
     
+
     #raise @todays_articles.inspect
   end
 
@@ -39,6 +42,9 @@ class ArticlesController < ApplicationController
     images_hash.each{|key, value|
       @thumbnail_images.push(value.html_safe);
     }
+
+    @title = title + " " + @article.title;
+
     #記事コメント入力
     @comment = Comment.new
     @comment.article_id = @article.id;

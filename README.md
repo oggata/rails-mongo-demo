@@ -29,3 +29,14 @@ Things you may want to cover:
 
 #seed
 bundle exec rake db:seed
+
+
+
+
+sudo service nginx restart
+
+
+bundle exec pumactl start
+
+
+bundle exec rails server rails
