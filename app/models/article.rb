@@ -87,6 +87,9 @@ class Article
 end
 
 #確認
+
+#show dbs
+
 #db.articles.getIndexSpecs()
 
 #multi key index

@@ -7,11 +7,18 @@ class Tasks::Batch
 	def self.execute
 		p "start"
 
-
 		randId = rand(9) + 1
 		@sites = Site.skip(2).limit(100)
 
+		addCnt = 0;
+
 		for site in @sites do
+
+			#上限は100件
+			addCnt++
+			if addCnt > 300 then
+				break
+			end
 
 			p site.title
 
