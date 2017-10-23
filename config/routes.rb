@@ -5,6 +5,10 @@ Rails.application.routes.draw do
   resources :articles
   #resources :cats
   root to: 'articles#index'
+
+  get "/about"  => 'supports#about'
+  get "/policy"  => 'supports#policy'
+  get "/contact"  => 'supports#contact'
   #get "/jp"           => "articles#index"
   #get "/en"           => "articles#index"
   #get "/en/articles/:id"           => "articles#show"

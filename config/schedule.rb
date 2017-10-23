@@ -1,4 +1,4 @@
-require File.expand_path(File.dirname(__FILE__) + "/environment")
+set :environment, :development
 set :output, 'log/cron.log'
 
 #bundle exec rails runner Tasks::Batch.execute

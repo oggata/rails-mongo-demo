@@ -24,7 +24,7 @@ class Article
   field :updated_at, type: Time, default: -> { Time.current }
 
   def self.getTodaysArticles(skip_cnt,row_per_page)
-    @articles = Article.where(:weight.gte => 2).desc(:created_at).skip(skip_cnt).limit(row_per_page)
+    @articles = Article.where(:weight.gte => 3).desc(:created_at).skip(skip_cnt).limit(row_per_page)
     #@articles = Article.all
     @todays_articles = [];
     for article in @articles do
@@ -46,8 +46,8 @@ class Article
     return @todays_articles
   end
 
-  def self.getTodaysArticlesByTag(tag,skip_cnt,row_per_page)
-    @articles = Article.where(:weight.gte => 2).desc(:created_at).skip(skip_cnt).limit(row_per_page)
+  def self.getTodaysArticlesByTag(search_tag,skip_cnt,row_per_page)
+    @articles = Article.where(tags: search_tag).where(:weight.gte => 3).desc(:created_at).skip(skip_cnt).limit(row_per_page)
     #@articles = Article.all
     @todays_articles = [];
     for article in @articles do
@@ -70,7 +70,22 @@ class Article
 
 
   def self.getRelatedArticles()
-    @articles = Article.where(:weight.gte => 2).desc(:created_at).skip(0).limit(5)
+    @articles = Article.where(:weight.gte => 3).desc(:created_at).skip(0).limit(5)
+    @related_articles = [];
+    for article in @articles do
+      images_hash=JSON.parse(article.image)
+      thumbnail_url = "";
+      images_hash.each{|key, value|
+        thumbnail_url = value.html_safe
+      }
+      @related_article = { 'id' => article.id,'title' => article.title[0,20], 'body' => article.body[0,200], 'thumbnail_url' => thumbnail_url, 'site_name' => article.site_name}
+      @related_articles.push(@related_article);
+    end
+    return @related_articles
+  end
+
+  def self.getRelatedArticlesByTag(article_tag)
+    @articles = Article.where(tags: article_tag).where(:weight.gte => 3).desc(:created_at).skip(0).limit(5)
     @related_articles = [];
     for article in @articles do
       images_hash=JSON.parse(article.image)

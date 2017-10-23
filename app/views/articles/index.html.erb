@@ -4,14 +4,67 @@
 </div>
 
 <ul class="nav nav-tabs">
-  <li class="active"><a href="#">Home</a></li>
-  <li><a href="/articles?page=<%= @current_page_num %>&tag='ALL'">すべて</a></li>
-  <li><a href="#">暮らし</a></li>
-  <li><a href="#">エンタメ</a></li>
-  <li><a href="#">学び</a></li>
-  <li><a href="#">画像</a></li>
-  <li><a href="#">動画</a></li>
-  <li><a href="#">グッズ</a></li>
+
+
+
+<% if @search_tag == "" then %>
+<li class="active">
+<% else %>
+<li>
+<% end %>
+
+    <a href="/articles?page=<%= @current_page_num %>&tag='ALL'">すべて</a></li>
+  
+<% if @search_tag == "暮らし" then %>
+<li class="active">
+<% else %>
+<li>
+<% end %>
+
+  <a href="#">暮らし</a></li>
+
+<% if @search_tag == "エンタメ" then %>
+<li class="active">
+<% else %>
+<li>
+<% end %>
+
+  <a href="#">エンタメ</a></li>
+  
+<% if @search_tag == "学び" then %>
+<li class="active">
+<% else %>
+<li>
+<% end %>
+
+
+  <a href="#">学び</a></li>
+  
+
+<% if @search_tag == "画像" then %>
+<li class="active">
+<% else %>
+<li>
+<% end %>
+
+  <a href="#">画像</a></li>
+  
+<% if @search_tag == "動画" then %>
+<li class="active">
+<% else %>
+<li>
+<% end %>
+
+  <a href="#">動画</a></li>
+  
+
+<% if @search_tag == "グッズ" then %>
+<li class="active">
+<% else %>
+<li>
+<% end %>
+
+  <a href="#">グッズ</a></li>
 </ul>
 
     <div class="col-xs-9">
@@ -19,7 +72,7 @@
       <p id="notice"><%= notice %></p>
       <% @todays_articles.each do |article| %>
       <div class="media">
-        <a href="/articles/<%= article['id'] %>" class="media-left"><img src=<%= article['thumbnail_url'] %> class="img-rounded" width="150"></a>
+        <a href="/articles/<%= article['id'] %>" class="media-left"><img src=<%= article['thumbnail_url'] %> class="img-rounded" width="150" onerror="this.src='https://parts.news-postseven.com/picture/2017/04/neko_fotoco1.jpg';"></a>
         <div class="media-body">
           <h3 class="media-heading"><a href="/articles/<%= article['id'] %>"><%= article['title'] %></a></h3><%= article['body'] %>(<%= article['site_name'] %>)
         </div>

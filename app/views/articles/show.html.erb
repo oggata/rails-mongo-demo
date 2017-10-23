@@ -18,7 +18,7 @@
   <div class="panel-body">
     <p></p>
       <% @thumbnail_images.each do |thumbnail_image_url| %> 
-        <img src=<%= thumbnail_image_url %> />
+        <img src=<%= thumbnail_image_url %> width="800" onerror="this.src='https://parts.news-postseven.com/picture/2017/04/neko_fotoco1.jpg';" />
       <% end %>
   </div>
   <a href=<%= @article.url %> class="btn btn-primary btn-lg btn-block" role="button" target="_blank">続きを読む</a>
@@ -35,7 +35,7 @@
 <p id="notice"><%= notice %></p>
 <% @related_articles.each do |related_article| %>
 <div class="media">
-  <a href="/articles/<%= related_article['id'] %>" class="media-left"><img src=<%= related_article['thumbnail_url'] %> class="img-rounded" width="150"></a>
+  <a href="/articles/<%= related_article['id'] %>" class="media-left"><img src=<%= related_article['thumbnail_url'] %> class="img-rounded" width="150" onerror="this.src='https://parts.news-postseven.com/picture/2017/04/neko_fotoco1.jpg';"></a>
   <div class="media-body">
     <h3 class="media-heading"><a href="/articles/<%= related_article['id'] %>"><%= related_article['title'] %></a></h3><%= related_article['body'] %><%= related_article['site_name'] %>
   </div>

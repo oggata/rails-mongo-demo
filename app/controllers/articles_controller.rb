@@ -5,15 +5,15 @@ class ArticlesController < ApplicationController
   def index
 
     #言語取得
-    path_dir = request.path_info
+    #path_dir = request.path_info
     #raise path_dir.inspect
-    if path_dir == "/en"
-    end
+    #if path_dir == "/en"
+    #end
 
     @title = title;
 
     #カテゴリ取得
-    tag = params[:tag]
+    @search_tag = params[:tag]
 
     #ページ取得
     current_page_num = params[:page]
@@ -24,14 +24,17 @@ class ArticlesController < ApplicationController
     skip_cnt = row_per_page * (current_page_num.to_i - 1)
     @current_page_num = current_page_num
 
-    if !tag then
+    if !@search_tag then
       @todays_articles = Article.getTodaysArticles(skip_cnt,row_per_page);
     else
-      @todays_articles = Article.getTodaysArticles(skip_cnt,row_per_page);
+      @todays_articles = Article.getTodaysArticlesByTag(@search_tag,skip_cnt,row_per_page);
     end
-    
-
     #raise @todays_articles.inspect
+  end
+
+
+  def list
+
   end
 
   # GET /articles/1
@@ -45,13 +48,21 @@ class ArticlesController < ApplicationController
 
     @title = title + " " + @article.title;
 
+    #関連記事を検索する
+    search_article_tag = ""
+    search_article_tags = []
+    for article_tag in @article.tags do
+      #raise article_tag.inspect
+      search_article_tag = article_tag
+      search_article_tags.push(article_tag)
+    end
+    #raise search_article_tag.inspect
+    @related_articles = Article.getRelatedArticlesByTag(search_article_tags);
+
     #記事コメント入力
     @comment = Comment.new
     @comment.article_id = @article.id;
     @comment.article_url = @article.url;
-
-    @related_articles = Article.getRelatedArticles();
-
     #記事コメント一覧
     @comments = []
     begin
