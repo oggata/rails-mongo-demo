@@ -8,17 +8,10 @@ class Tasks::Batch
 		p "start"
 
 		randId = rand(9) + 1
-		@sites = Site.skip(2).limit(100)
+		@sites = Site.skip(randId).limit(100)
 
-		addCnt = 0;
-
+		addCnt = 0
 		for site in @sites do
-
-			#上限は100件
-			addCnt++
-			if addCnt > 300 then
-				break
-			end
 
 			p site.title
 
@@ -51,8 +44,17 @@ class Tasks::Batch
 					if !page.url then
 						next
 					end
+
+					#上限は100件
+					addCnt+=1
+					if addCnt > 300
+						p "finish"
+						break
+					end
+
 					begin
 						p "begin"
+
 						#title
 						title_jp = ""
 						if page.doc.at('title') then
