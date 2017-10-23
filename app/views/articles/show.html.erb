@@ -33,13 +33,44 @@
 
 <h2 class="page-header">関連</h2>
 <p id="notice"><%= notice %></p>
-<% @related_articles.each do |related_article| %>
-<div class="media">
-  <a href="/articles/<%= related_article['id'] %>" class="media-left"><img src=<%= related_article['thumbnail_url'] %> class="img-rounded" width="150" onerror="this.src='https://parts.news-postseven.com/picture/2017/04/neko_fotoco1.jpg';"></a>
-  <div class="media-body">
-    <h3 class="media-heading"><a href="/articles/<%= related_article['id'] %>"><%= related_article['title'] %></a></h3><%= related_article['body'] %><%= related_article['site_name'] %>
+<% @related_articles.each do |article| %>
+
+
+  <div class="well">
+      <div class="media">
+        <a class="pull-left" href="/articles/<%= article['id'] %>">
+        <img class="media-object" width=150 src=<%= article['thumbnail_url'] %> onerror="this.src='https://parts.news-postseven.com/picture/2017/04/neko_fotoco1.jpg';">
+      </a>
+      <div class="media-body">
+        <h4 class="media-heading"><a href="/articles/<%= article['id'] %>"><%= article['title'] %></a></h4>
+          <p class="text-right">By <%= article['site_name'] %></p>
+          <p><%= article['body'] %></p>
+          <ul class="list-inline list-unstyled">
+        <li><span><i class="glyphicon glyphicon-calendar"></i> 2 days, 8 hours </span></li>
+            <li>|</li>
+            <span><i class="glyphicon glyphicon-comment"></i> 2 comments</span>
+            <li>|</li>
+            <li>
+               <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star-empty"></span>
+            </li>
+            <li>|</li>
+            <li>
+            <!-- Use Font Awesome http://fortawesome.github.io/Font-Awesome/ -->
+              <span><i class="fa fa-facebook-square"></i></span>
+              <span><i class="fa fa-twitter-square"></i></span>
+              <span><i class="fa fa-google-plus-square"></i></span>
+            </li>
+      </ul>
+       </div>
+    </div>
   </div>
-</div>
+
+
+
 <% end %>
 </div>
 
@@ -54,3 +85,67 @@
   (adsbygoogle = window.adsbygoogle || []).push({});
   </script>
 </div>
+
+
+
+
+
+<div class="col-xs-12">
+
+<div class="container">
+<div class="row">
+<div class="col-sm-12">
+<h3>User Comment Example</h3>
+</div><!-- /col-sm-12 -->
+</div><!-- /row -->
+<div class="row">
+<div class="col-sm-1">
+<div class="thumbnail">
+<img class="img-responsive user-photo" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png">
+</div><!-- /thumbnail -->
+</div><!-- /col-sm-1 -->
+
+<div class="col-sm-5">
+<div class="panel panel-default">
+<div class="panel-heading">
+<strong>myusername</strong> <span class="text-muted">commented 5 days ago</span>
+</div>
+<div class="panel-body">
+Panel content
+</div><!-- /panel-body -->
+
+
+
+
+</div><!-- /panel panel-default -->
+</div><!-- /col-sm-5 -->
+
+
+
+<div class="container">
+<div class="row">
+
+</div><!-- /row -->
+<div class="row">
+<div class="col-sm-1">
+<div class="thumbnail">
+<img class="img-responsive user-photo" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png">
+</div><!-- /thumbnail -->
+</div><!-- /col-sm-1 -->
+
+<div class="col-sm-5">
+<div class="panel panel-default">
+<div class="panel-heading">
+<strong>myusername</strong> <span class="text-muted">commented 5 days ago</span>
+</div>
+<div class="panel-body">
+Panel content
+</div><!-- /panel-body -->
+</div><!-- /panel panel-default -->
+</div><!-- /col-sm-5 -->
+
+
+
+</div>
+
+

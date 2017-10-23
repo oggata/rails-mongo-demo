@@ -2,7 +2,7 @@ set :environment, :development
 set :output, 'log/cron.log'
 
 #bundle exec rails runner Tasks::Batch.execute
-every 1.minute do
+every 10.minute do
   runner "Tasks::Batch.execute"
 end
 

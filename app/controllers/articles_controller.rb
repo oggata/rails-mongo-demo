@@ -14,6 +14,10 @@ class ArticlesController < ApplicationController
 
     #カテゴリ取得
     @search_tag = params[:tag]
+    if @search_tag == "ALL"
+      @search_tag = nil
+    end
+    #raise @search_tag.inspect
 
     #ページ取得
     current_page_num = params[:page]

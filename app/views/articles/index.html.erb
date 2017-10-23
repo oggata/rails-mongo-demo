@@ -13,7 +13,7 @@
 <li>
 <% end %>
 
-    <a href="/articles?page=<%= @current_page_num %>&tag='ALL'">すべて</a></li>
+    <a href="/articles?page=<%= @current_page_num %>&tag=ALL">すべて</a></li>
   
 <% if @search_tag == "暮らし" then %>
 <li class="active">
@@ -21,7 +21,7 @@
 <li>
 <% end %>
 
-  <a href="#">暮らし</a></li>
+  <a href="/articles?page=<%= @current_page_num %>&tag=暮らし">暮らし</a></li>
 
 <% if @search_tag == "エンタメ" then %>
 <li class="active">
@@ -29,7 +29,7 @@
 <li>
 <% end %>
 
-  <a href="#">エンタメ</a></li>
+  <a href="/articles?page=<%= @current_page_num %>&tag=エンタメ">エンタメ</a></li>
   
 <% if @search_tag == "学び" then %>
 <li class="active">
@@ -38,7 +38,7 @@
 <% end %>
 
 
-  <a href="#">学び</a></li>
+  <a href="/articles?page=<%= @current_page_num %>&tag=学び">学び</a></li>
   
 
 <% if @search_tag == "画像" then %>
@@ -47,7 +47,7 @@
 <li>
 <% end %>
 
-  <a href="#">画像</a></li>
+  <a href="/articles?page=<%= @current_page_num %>&tag=画像">画像</a></li>
   
 <% if @search_tag == "動画" then %>
 <li class="active">
@@ -55,7 +55,7 @@
 <li>
 <% end %>
 
-  <a href="#">動画</a></li>
+  <a href="/articles?page=<%= @current_page_num %>&tag=動画">動画</a></li>
   
 
 <% if @search_tag == "グッズ" then %>
@@ -64,19 +64,52 @@
 <li>
 <% end %>
 
-  <a href="#">グッズ</a></li>
+  <a href="/articles?page=<%= @current_page_num %>&tag=グッズ">グッズ</a></li>
 </ul>
 
     <div class="col-xs-9">
       <h1 class="page-header">what's new</h1>
       <p id="notice"><%= notice %></p>
       <% @todays_articles.each do |article| %>
+
+
+
+  <div class="well">
       <div class="media">
-        <a href="/articles/<%= article['id'] %>" class="media-left"><img src=<%= article['thumbnail_url'] %> class="img-rounded" width="150" onerror="this.src='https://parts.news-postseven.com/picture/2017/04/neko_fotoco1.jpg';"></a>
-        <div class="media-body">
-          <h3 class="media-heading"><a href="/articles/<%= article['id'] %>"><%= article['title'] %></a></h3><%= article['body'] %>(<%= article['site_name'] %>)
-        </div>
-      </div>
+        <a class="pull-left" href="/articles/<%= article['id'] %>">
+        <img class="media-object" width=150 src=<%= article['thumbnail_url'] %> onerror="this.src='https://parts.news-postseven.com/picture/2017/04/neko_fotoco1.jpg';">
+      </a>
+      <div class="media-body">
+        <h4 class="media-heading"><a href="/articles/<%= article['id'] %>"><%= article['title'] %></a></h4>
+          <p class="text-right">By <%= article['site_name'] %></p>
+          <p><%= article['body'] %></p>
+          <ul class="list-inline list-unstyled">
+        <li><span><i class="glyphicon glyphicon-calendar"></i> ? days, ? hours </span></li>
+            <li>|</li>
+            <span><i class="glyphicon glyphicon-comment"></i> 0 comments</span>
+            <li>|</li>
+            <li>
+               <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star-empty"></span>
+            </li>
+            <li>|</li>
+            <li>
+            <!-- Use Font Awesome http://fortawesome.github.io/Font-Awesome/ -->
+              <span><i class="fa fa-facebook-square"></i></span>
+              <span><i class="fa fa-twitter-square"></i></span>
+              <span><i class="fa fa-google-plus-square"></i></span>
+            </li>
+      </ul>
+       </div>
+    </div>
+  </div>
+
+
+
+
       <% end %>
 
       <div class="text-center">

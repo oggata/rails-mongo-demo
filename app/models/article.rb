@@ -105,6 +105,8 @@ end
 
 #show dbs
 
+#db.articles.count()
+
 #db.articles.getIndexSpecs()
 
 #multi key index

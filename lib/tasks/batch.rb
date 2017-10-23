@@ -7,7 +7,7 @@ class Tasks::Batch
 	def self.execute
 		p "start"
 
-		randId = rand(9) + 1
+		randId = rand(35) + 1
 		@sites = Site.skip(randId).limit(100)
 
 		addCnt = 0

@@ -1,4 +1,4 @@
-class SupportsController < ActionController::Base
+class SupportsController < ApplicationController
 
 	def about()
 	end
