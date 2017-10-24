@@ -40,3 +40,6 @@ bundle exec pumactl start
 
 
 bundle exec rails server rails
+
+
+bundle exec whenever --update-crontab 

@@ -3,22 +3,12 @@ class ArticlesController < ApplicationController
   # GET /articles
   # GET /articles.json
   def index
-
-    #言語取得
-    #path_dir = request.path_info
-    #raise path_dir.inspect
-    #if path_dir == "/en"
-    #end
-
-    @title = title;
-
     #カテゴリ取得
     @search_tag = params[:tag]
     if @search_tag == "ALL"
       @search_tag = nil
     end
     #raise @search_tag.inspect
-
     #ページ取得
     current_page_num = params[:page]
     if !current_page_num then
@@ -34,24 +24,42 @@ class ArticlesController < ApplicationController
       @todays_articles = Article.getTodaysArticlesByTag(@search_tag,skip_cnt,row_per_page);
     end
     #raise @todays_articles.inspect
+    @title = title;
   end
 
 
   def list
+    #カテゴリ取得
+    @search_tag = params[:tag]
+    if @search_tag == "ALL"
+      @search_tag = nil
+    end
+    #raise @search_tag.inspect
+    #ページ取得
+    current_page_num = params[:page]
+    if !current_page_num then
+      current_page_num = 1
+    end
+    row_per_page = 20
+    skip_cnt = row_per_page * (current_page_num.to_i - 1)
+    @current_page_num = current_page_num
 
+    if !@search_tag then
+      @todays_articles = Article.getTodaysArticles(skip_cnt,row_per_page);
+    else
+      @todays_articles = Article.getTodaysArticlesByTag(@search_tag,skip_cnt,row_per_page);
+    end
+    #タイトル
+    @title = title + " " +  @article.title + "(" + @current_page_num + "ページ目)";
   end
 
-  # GET /articles/1
-  # GET /articles/1.json
   def show
     images_hash=JSON.parse(@article.image)
     @thumbnail_images = []
     images_hash.each{|key, value|
       @thumbnail_images.push(value.html_safe);
     }
-
     @title = title + " " + @article.title;
-
     #関連記事を検索する
     search_article_tag = ""
     search_article_tags = []

@@ -34,9 +34,9 @@ module BatchesHelper
 		article.body = body
 		article.description = body
 
+		#タグ
 		article.tags = @article_tags
 		article.site_name = origin_page_title
-		#article.category_id = 1
 		article.category_name = origin_catgory_name
 		article.site_name = origin_page_title
 
@@ -66,10 +66,7 @@ module BatchesHelper
 		end
 
 		article.weight = article_weight
-
 		article.save
-
-
 	end
   end
 

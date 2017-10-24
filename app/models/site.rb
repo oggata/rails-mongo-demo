@@ -10,4 +10,11 @@ class Site
   field :tag3, type: String
   field :tag4, type: String
   field :tag5, type: String
+
+
+  def self.getSiteCount()
+    @sitecount = Site.count()
+    return @sitecount
+  end
+
 end

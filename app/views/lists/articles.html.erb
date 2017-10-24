@@ -1,83 +1,5 @@
-<div class="jumbotron" style="height:300;background:url('./assets/demo.jpg');background-size:cover;" >
-  <div class="container" style="height: 400px;">
-  </div>
-</div>
-
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- bigbanner -->
-<ins class="adsbygoogle"
-     style="display:inline-block;width:728px;height:90px"
-     data-ad-client="ca-pub-0308249287821909"
-     data-ad-slot="5718242764"></ins>
-<script>
-(adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-
-
-<ul class="nav nav-tabs">
-
-  <% if @search_tag == "" then %>
-  <li class="active">
-  <% else %>
-  <li>
-  <% end %>
-
-  <a href="/articles?page=<%= @current_page_num %>&tag=ALL">すべて</a></li>
-  
-  <% if @search_tag == "暮らし" then %>
-  <li class="active">
-  <% else %>
-  <li>
-  <% end %>
-
-  <a href="/articles?page=<%= @current_page_num %>&tag=エンタメ">エンタメ</a></li>
-
-<% if @search_tag == "エンタメ" then %>
-<li class="active">
-<% else %>
-<li>
-<% end %>
-
-  <a href="/articles?page=<%= @current_page_num %>&tag=ブログ">ブログ</a></li>
-  
-<% if @search_tag == "学び" then %>
-<li class="active">
-<% else %>
-<li>
-<% end %>
-
-
-  <a href="/articles?page=<%= @current_page_num %>&tag=里親">里親</a></li>
-  
-
-<% if @search_tag == "里親" then %>
-<li class="active">
-<% else %>
-<li>
-<% end %>
-
-  <a href="/articles?page=<%= @current_page_num %>&tag=画像">画像</a></li>
-  
-<% if @search_tag == "動画" then %>
-<li class="active">
-<% else %>
-<li>
-<% end %>
-
-  <a href="/articles?page=<%= @current_page_num %>&tag=動画">動画</a></li>
-  
-
-<% if @search_tag == "グッズ" then %>
-<li class="active">
-<% else %>
-<li>
-<% end %>
-
-  <a href="/articles?page=<%= @current_page_num %>&tag=グッズ">グッズ</a></li>
-</ul>
-
     <div class="col-xs-9">
-      <h1 class="page-header">what's new</h1>
+      <h1 class="page-header"><%= @title %></h1>
       <p id="notice"><%= notice %></p>
       <% @todays_articles.each do |article| %>
 
@@ -124,16 +46,15 @@
       <div class="text-center">
         <ul class="pagination pagination-lg">
           <li class="disabled"><span><<</span></li>
-<% if @current_page_num.to_i - 2 >= 1 then %>
-          <li><a href="/articles?page=<%= @current_page_num.to_i - 2 %>"><%= @current_page_num.to_i - 2 %></a></li>
-<% end %>
-
-<% if @current_page_num.to_i - 1 >= 1 then %>
-          <li><a href="/articles?page=<%= @current_page_num.to_i - 1 %>"><%= @current_page_num.to_i - 1 %></a></li>
-<% end %>
+          <% if @current_page_num.to_i - 2 >= 1 then %>
+                    <li><a href="/lists?tag=<%= @search_tag %>&page=<%= @current_page_num.to_i - 2 %>"><%= @current_page_num.to_i - 2 %></a></li>
+          <% end %>
+          <% if @current_page_num.to_i - 1 >= 1 then %>
+                    <li><a href="/lists?tag=<%= @search_tag %>&page=<%= @current_page_num.to_i - 1 %>"><%= @current_page_num.to_i - 1 %></a></li>
+          <% end %>
           <li class="active"><span><%= @current_page_num %></span></li>
-          <li><a href="/articles?page=<%= @current_page_num.to_i + 1 %>"><%= @current_page_num.to_i + 1 %></a></li>
-          <li><a href="/articles?page=<%= @current_page_num.to_i + 2 %>"><%= @current_page_num.to_i + 2 %></a></li>
+          <li><a href="/lists?tag=<%= @search_tag %>&page=<%= @current_page_num.to_i + 1 %>"><%= @current_page_num.to_i + 1 %></a></li>
+          <li><a href="/lists?tag=<%= @search_tag %>&page=<%= @current_page_num.to_i + 2 %>"><%= @current_page_num.to_i + 2 %></a></li>
           <li class="disabled"><span>>></span></li>
         </ul>
       </div>

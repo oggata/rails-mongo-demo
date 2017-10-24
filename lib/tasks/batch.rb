@@ -6,15 +6,13 @@ Bundler.require
 class Tasks::Batch
 	def self.execute
 		p "start"
-
-		randId = rand(35) + 1
-		@sites = Site.skip(randId).limit(100)
-
+		count = Site.getSiteCount()
+		randId = rand(count) + 0
+		@sites = Site.skip(randId).limit(1)
 		addCnt = 0
 		for site in @sites do
-
+			#取得元のサイトを設定
 			p site.title
-
 			origin_page_title = site.title
 			origin_page_url = site.url
 			origin_catgory_name = site.category_name
@@ -35,6 +33,8 @@ class Tasks::Batch
 			if site.tag5.length > 0
 				@tags.push(site.tag5)
 			end
+			#サイト名もタグに入れる
+			@tags.push(site.tag1)
 
 			Anemone.crawl(origin_page_url,depth_limit: 10,:delay => 3,:skip_query_strings => false) do |anemone|
 				# ここがメインの部分
@@ -45,16 +45,16 @@ class Tasks::Batch
 						next
 					end
 
-					#上限は100件
+					#上限は300件
 					addCnt+=1
 					if addCnt > 300
 						p "finish"
 						break
 					end
 
+					#ここから処理開始
 					begin
 						p "begin"
-
 						#title
 						title_jp = ""
 						if page.doc.at('title') then
@@ -62,16 +62,15 @@ class Tasks::Batch
 						else
 							title_jp = "no title"
 						end
-
 						#article
 						article  = Article.find_by(:url => page.url)
-						aaa = BatchesHelper.openUrlAndSaveArticle(article,page.url,title_jp,origin_page_title,origin_page_url,origin_catgory_name,@tags)
+						setArticles = BatchesHelper.openUrlAndSaveArticle(article,page.url,title_jp,origin_page_title,origin_page_url,origin_catgory_name,@tags)
 						p "----------------------->update"
 						rescue Mongoid::Errors::DocumentNotFound => e
 							p "----------------------->insert"
 							p e
 							article = Article.new
-							aaa = BatchesHelper.openUrlAndSaveArticle(article,page.url,title_jp,origin_page_title,origin_page_url,origin_catgory_name,@tags)
+							setArticles = BatchesHelper.openUrlAndSaveArticle(article,page.url,title_jp,origin_page_title,origin_page_url,origin_catgory_name,@tags)
 						rescue Exception => e
 							p "----------------------->error"
 							p e

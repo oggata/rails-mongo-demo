@@ -27,15 +27,13 @@
 
 <div class="panel panel-default">
 <% @article.tags.each do |tag| %>
-<%= tag %>
+<a href="/lists?tag=<%= tag %>"><%= tag %></a>
 <% end %>
 </div>
 
 <h2 class="page-header">関連</h2>
 <p id="notice"><%= notice %></p>
 <% @related_articles.each do |article| %>
-
-
   <div class="well">
       <div class="media">
         <a class="pull-left" href="/articles/<%= article['id'] %>">
@@ -46,9 +44,9 @@
           <p class="text-right">By <%= article['site_name'] %></p>
           <p><%= article['body'] %></p>
           <ul class="list-inline list-unstyled">
-        <li><span><i class="glyphicon glyphicon-calendar"></i> 2 days, 8 hours </span></li>
+        <li><span><i class="glyphicon glyphicon-calendar"></i> ? days, ? hours </span></li>
             <li>|</li>
-            <span><i class="glyphicon glyphicon-comment"></i> 2 comments</span>
+            <span><i class="glyphicon glyphicon-comment"></i> 0 comments</span>
             <li>|</li>
             <li>
                <span class="glyphicon glyphicon-star"></span>
@@ -68,9 +66,6 @@
        </div>
     </div>
   </div>
-
-
-
 <% end %>
 </div>
 
@@ -85,9 +80,6 @@
   (adsbygoogle = window.adsbygoogle || []).push({});
   </script>
 </div>
-
-
-
 
 
 <div class="col-xs-12">
