@@ -5,7 +5,7 @@ class ArticlesController < ApplicationController
   def index
     #カテゴリ取得
     @search_tag = params[:tag]
-    if @search_tag == "ALL"
+    if @search_tag == nil
       @search_tag = "エンタメ"
     end
     #raise @search_tag.inspect

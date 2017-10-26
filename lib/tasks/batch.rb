@@ -34,7 +34,7 @@ class Tasks::Batch
 				@tags.push(site.tag5)
 			end
 			#サイト名もタグに入れる
-			@tags.push(site.tag1)
+			@tags.push(origin_page_title)
 
 			Anemone.crawl(origin_page_url,depth_limit: 10,:delay => 3,:skip_query_strings => false) do |anemone|
 				# ここがメインの部分
