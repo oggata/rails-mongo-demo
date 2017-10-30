@@ -1,5 +1,7 @@
 class SitesController < ApplicationController
   before_action :set_site, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
+  before_action :is_admin
 
   # GET /sites
   # GET /sites.json
@@ -75,4 +77,14 @@ class SitesController < ApplicationController
     def site_params
       params.require(:site).permit(:title, :description, :url, :category_name, :tag1, :tag2, :tag3, :tag4, :tag5)
     end
+
+    def is_admin
+      if current_user.email == "" then
+        return true
+      else
+        redirect_to("/login")
+        return false
+      end
+    end
+
 end

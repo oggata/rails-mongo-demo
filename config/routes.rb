@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
+  resources :tags
+  resources :words
   devise_for :users
   resources :sites
   resources :comments
   resources :articles
+  resources :words
   #resources :cats
   root to: 'articles#index'
 

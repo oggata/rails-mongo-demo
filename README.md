@@ -1,45 +1,57 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+MAC
+#ENV
+$ brew install mecab
+$ brew install mecab-ipadic
 
-Things you may want to cover:
+#CLONE
+$ git clone git@github.com:oggata/rails-mongo-demo.git
+$ bundle install
 
-* Ruby version
+#BATCH
+$ bundle exec rails runner Tasks::Batch.execute
 
-* System dependencies
+#WHENEVER
+$ bundle exec whenever --update-crontab
 
-* Configuration
+#SEED
+$ bundle exec rake db:seed
 
-* Database creation
+#DEV_SERVER
+$ bundle exec rails server
 
-* Database initialization
+#PROD_SERVER
+$ sudo service nginx start
+$ bundle exec pumactl start
 
-* How to run the test suite
+UBUNTU
+#
+sudo apt-get update
+sudo apt-get upgrade
+sudo apt-get install git vim build-essential libssl-dev libreadline-dev
+sudo apt-get install nodejs
+sudo apt-get install -y mecab mecab-ipadic-utf8 libmecab-dev
 
-* Services (job queues, cache servers, search engines, etc.)
+git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
+git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
 
-* Deployment instructions
+>>>>>>>>>>>>>>>>>>
+vim .bash_profile
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
+>>>>>>>>>>>>>>>>>>
+source .bash_profile
 
-* ...
+##インストール
+$ rbenv install --list
+$ rbenv install 2.3.0
+$ rbenv global 2.3.0
 
+#bundlerをインストールする
+$ gem install bundler
 
-#batch
-#bundle exec rails runner Tasks::Batch.execute
-
-#seed
-bundle exec rake db:seed
-
-
-
-
-sudo service nginx restart
-
-
-bundle exec pumactl start
-
-
-bundle exec rails server rails
-
-
-bundle exec whenever --update-crontab 
+#クローンする
+git clone https://github.com/oggata/rails-mongo-demo
+cd rails-mongo-demo
+bundle install

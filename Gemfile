@@ -22,6 +22,8 @@ gem 'uglifier', '>= 1.3.0'
 # gem 'therubyracer', platforms: :ruby
 
 
+gem 'google-search'
+
 gem 'anemone'
 gem 'nokogiri'
 gem 'sanitize'
