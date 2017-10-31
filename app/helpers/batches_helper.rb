@@ -15,6 +15,10 @@ module BatchesHelper
 			escaped_url = URI.escape(search_url)
 			doc = Nokogiri::HTML(open(escaped_url))
 			site = Site.new
+
+			#
+			#doc = doc.force_encoding("UTF-8")
+
 			site.title = doc.title
 			site.url = search_url
 			site.description = doc.xpath('/html/head/meta[@name="description"]/@content').to_s 

@@ -5,6 +5,10 @@ Bundler.require
 
 class Tasks::Batch
 	def self.execute
+
+		logger = Logger.new('log/development.log')
+    	#logger.debug(User.first().to_yaml)
+
 		p "start"
 		count = Site.getSiteCount()
 		randId = rand(count) + 0

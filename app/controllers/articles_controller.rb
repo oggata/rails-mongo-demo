@@ -3,16 +3,9 @@ class ArticlesController < ApplicationController
   # GET /articles
   # GET /articles.json
   def index
-    Dotenv.overload
-    @top_image = "./assets/" + ENV["SITE_PREFIX"] + "_top.jpg"
-    @thumbnail_image = "./assets/" + ENV["SITE_PREFIX"] + "_thumbnail_150.jpg"
-    @top_tabs = ENV["SITE_INDEX_TABS"].split(",");
-
+    #Dotenv.overload
     #カテゴリ取得
     @search_tag = params[:tag]
-    if @search_tag == nil
-      @search_tag = "エンタメ"
-    end
     #raise @search_tag.inspect
     #ページ取得
     current_page_num = params[:page]
@@ -28,18 +21,12 @@ class ArticlesController < ApplicationController
     else
       @todays_articles = Article.getTodaysArticlesByTag(@search_tag,skip_cnt,row_per_page);
     end
-    #raise @todays_articles.inspect
     @title = title;
   end
 
   def list
-    @thumbnail_image = "./assets/" + ENV["SITE_PREFIX"] + "_thumbnail_150.jpg"
     #カテゴリ取得
     @search_tag = params[:tag]
-    if @search_tag == "ALL"
-      @search_tag = nil
-    end
-    #raise @search_tag.inspect
     #ページ取得
     current_page_num = params[:page]
     if !current_page_num then
@@ -59,7 +46,6 @@ class ArticlesController < ApplicationController
   end
 
   def show
-    @thumbnail_image = "./assets/" + ENV["SITE_PREFIX"] + "_thumbnail_150.jpg"
     images_hash=JSON.parse(@article.image)
     @thumbnail_images = []
     images_hash.each{|key, value|

@@ -2,17 +2,7 @@ class ApplicationController < ActionController::Base
   #protect_from_forgery with: :exception
   protect_from_forgery with: :null_session
 
-	def top_image()
-		@top_image = "./assets/" + ENV["SITE_PREFIX"] + "_top.jpg"
-	end
 
-	def thumbnail_image()
-		@top_image = "./assets/" + ENV["SITE_PREFIX"] + "_thumbnail_150.jpg"
-	end
-
-	def logo_image()
-		@top_image = "./assets/" + ENV["SITE_PREFIX"] + "_logo.png"
-	end
 
 	def set_profile(user_id)
 		@user = User.find(user_id)
@@ -83,4 +73,25 @@ class ApplicationController < ActionController::Base
 		@_default_og_description = ENV["SITE_DESCRIPTION"];
 	end
 	helper_method :default_og_description
+
+	def top_image()
+		@_top_image = "./assets/" + ENV["SITE_PREFIX"] + "_top.jpg"
+	end
+	helper_method :top_image
+
+	def thumbnail_image()
+		@_thumbnail_image = "./assets/" + ENV["SITE_PREFIX"] + "_thumbnail_150.jpg"
+	end
+	helper_method :thumbnail_image
+
+	def logo_image()
+		@_logo_image = "./assets/" + ENV["SITE_PREFIX"] + "_logo.png"
+	end
+	helper_method :logo_image
+
+	def top_tabs()
+		@_top_tabs = ENV["SITE_INDEX_TABS"].split(",");
+	end
+	helper_method :top_tabs
+
 end

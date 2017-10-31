@@ -3,9 +3,9 @@ class ListsController < ApplicationController
   def articles
     #カテゴリ取得
     @search_tag = params[:tag]
-    if @search_tag == "ALL"
-      @search_tag = nil
-    end
+    #if @search_tag == "ALL"
+    #  @search_tag = nil
+    #end
     #raise @search_tag.inspect
 
     #ページ取得

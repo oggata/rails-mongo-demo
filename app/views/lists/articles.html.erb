@@ -4,14 +4,13 @@
       <% @todays_articles.each do |article| %>
 
 
-
   <div class="well">
       <div class="media">
-        <a class="pull-left" href="/articles/<%= article['id'] %>">
-        <img class="media-object" width=150 src=<%= article['thumbnail_url'] %> onerror="this.src='<%= @thumbnail_image %>';">
+        <a class="pull-left" href="/<%= article['id'] %>">
+        <img class="media-object" width=150 src=<%= article['thumbnail_url'] %> onerror="this.src='<%= thumbnail_image %>';">
       </a>
       <div class="media-body">
-        <h4 class="media-heading"><a href="/articles/<%= article['id'] %>"><%= article['title'] %></a></h4>
+        <h4 class="media-heading"><a href="/<%= article['id'] %>"><%= article['title'] %></a></h4>
           <p class="text-right">By <%= article['site_name'] %></p>
           <p><%= article['body'] %></p>
           <ul class="list-inline list-unstyled">

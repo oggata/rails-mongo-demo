@@ -11,6 +11,7 @@ $ bundle install
 
 #BATCH
 $ bundle exec rails runner Tasks::Batch.execute
+$ bundle exec rails runner Tasks::Search.execute
 
 #WHENEVER
 $ bundle exec whenever --update-crontab

@@ -8,15 +8,9 @@ Rails.application.routes.draw do
   resources :words
   #resources :cats
   root to: 'articles#index'
-
-  get "/lists"  => 'lists#articles'
-
+  get "/list/:tag"           => "lists#articles",   as: :id, constraints: { tag: /\S+/ }
+  get "/:id"           => "articles#show",      as: :article_id, constraints: { id: /\S+/ }
   get "/about"  => 'supports#about'
   get "/policy"  => 'supports#policy'
   get "/contact"  => 'supports#contact'
-  #get "/jp"           => "articles#index"
-  #get "/en"           => "articles#index"
-  #get "/en/articles/:id"           => "articles#show"
-  #get "/jp/articles/:id"           => "articles#show"
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
