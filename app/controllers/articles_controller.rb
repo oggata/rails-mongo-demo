@@ -3,6 +3,11 @@ class ArticlesController < ApplicationController
   # GET /articles
   # GET /articles.json
   def index
+    Dotenv.overload
+    @top_image = "./assets/" + ENV["SITE_PREFIX"] + "_top.jpg"
+    @thumbnail_image = "./assets/" + ENV["SITE_PREFIX"] + "_thumbnail_150.jpg"
+    @top_tabs = ENV["SITE_INDEX_TABS"].split(",");
+
     #カテゴリ取得
     @search_tag = params[:tag]
     if @search_tag == nil
@@ -27,8 +32,8 @@ class ArticlesController < ApplicationController
     @title = title;
   end
 
-
   def list
+    @thumbnail_image = "./assets/" + ENV["SITE_PREFIX"] + "_thumbnail_150.jpg"
     #カテゴリ取得
     @search_tag = params[:tag]
     if @search_tag == "ALL"
@@ -54,6 +59,7 @@ class ArticlesController < ApplicationController
   end
 
   def show
+    @thumbnail_image = "./assets/" + ENV["SITE_PREFIX"] + "_thumbnail_150.jpg"
     images_hash=JSON.parse(@article.image)
     @thumbnail_images = []
     images_hash.each{|key, value|

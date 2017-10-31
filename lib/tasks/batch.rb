@@ -18,21 +18,36 @@ class Tasks::Batch
 			origin_catgory_name = site.category_name
 
 			@tags = []
+
+if site.tag1
 			if site.tag1.length > 0
 				@tags.push(site.tag1)
 			end
+end
+
+if site.tag2
 			if site.tag2.length > 0
 				@tags.push(site.tag2)
 			end
+end
+
+if site.tag3
 			if site.tag3.length > 0
 				@tags.push(site.tag3)
 			end
+end
+
+if site.tag4
 			if site.tag4.length > 0
 				@tags.push(site.tag4)
 			end
+end
+
+if site.tag5
 			if site.tag5.length > 0
 				@tags.push(site.tag5)
 			end
+end
 			#サイト名もタグに入れる
 			@tags.push(origin_page_title)
 

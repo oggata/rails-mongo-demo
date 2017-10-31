@@ -2,6 +2,18 @@ class ApplicationController < ActionController::Base
   #protect_from_forgery with: :exception
   protect_from_forgery with: :null_session
 
+	def top_image()
+		@top_image = "./assets/" + ENV["SITE_PREFIX"] + "_top.jpg"
+	end
+
+	def thumbnail_image()
+		@top_image = "./assets/" + ENV["SITE_PREFIX"] + "_thumbnail_150.jpg"
+	end
+
+	def logo_image()
+		@top_image = "./assets/" + ENV["SITE_PREFIX"] + "_logo.png"
+	end
+
 	def set_profile(user_id)
 		@user = User.find(user_id)
 		@page_count = 1
@@ -27,23 +39,23 @@ class ApplicationController < ActionController::Base
 	helper_method :current_page_id
 
 	def default_description
-		@_default_description = "CATSNAP(キャットナップ)-猫のいる暮らしをもっと楽しく-";
+		@_default_description = ENV["SITE_NAME"];
 	end
 	helper_method :default_description
 
 
 	def meta_keywords
-		@_meta_keywords = "猫,ネコ";
+		@_meta_keywords = ENV["SITE_KEY_WORD"];
 	end
 	helper_method :meta_keywords
 
 	def title
-		@_title = "CATSNAP(キャットナップ)-猫のいる暮らしをもっと楽しく-";
+		@_title = ENV["SITE_NAME"];
 	end
 	helper_method :title
 
 	def title_logo
-		@_title_logo = "CATSNAP";
+		@_title_logo = ENV["SITE_NAME"];
 	end
 	helper_method :title_logo
 
@@ -68,7 +80,7 @@ class ApplicationController < ActionController::Base
 	helper_method :og_url
 
 	def default_og_description
-		@_default_og_description = "CATSNAP(キャットナップ)-猫のいる暮らしをもっと楽しく-";
+		@_default_og_description = ENV["SITE_DESCRIPTION"];
 	end
 	helper_method :default_og_description
 end

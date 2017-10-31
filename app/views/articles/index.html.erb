@@ -1,60 +1,21 @@
-<div class="jumbotron" style="height:300;background:url('./assets/top_cat.jpg');background-size:cover;" >
+<div class="jumbotron" style="height:300;background:url(<%= @top_image %>);background-size:cover;" >
   <div class="container" style="height: 400px;">
   </div>
 </div>
 
 <ul class="nav nav-tabs">
 
-  <% if @search_tag == "エンタメ" then %>
-  <li class="active">
+<% tabs = @top_tabs %>
+<% tabs.each do |tab| %>
+  <% if @search_tag == tab then %>
+    <li class="active">
   <% else %>
-  <li>
-  <% end %>
-  <a href="/articles?page=<%= @current_page_num %>&tag=エンタメ">エンタメ</a></li>
+    <li>
+    <% end %>
+    <a href="/articles?page=<%= @current_page_num %>&tag=<%= tab %>"><%=  tab %></a>
+  </li>
+<% end %>
 
-  <% if @search_tag == "ブログ" then %>
-  <li class="active">
-  <% else %>
-  <li>
-  <% end %>
-  <a href="/articles?page=<%= @current_page_num %>&tag=ブログ">ブログ</a></li>
-  
-  <% if @search_tag == "里親" then %>
-  <li class="active">
-  <% else %>
-  <li>
-  <% end %>
-  <a href="/articles?page=<%= @current_page_num %>&tag=里親">里親</a></li>
-  
-  <% if @search_tag == "画像" then %>
-  <li class="active">
-  <% else %>
-  <li>
-  <% end %>
-  <a href="/articles?page=<%= @current_page_num %>&tag=画像">画像</a></li>
-  
-  <% if @search_tag == "動画" then %>
-  <li class="active">
-  <% else %>
-  <li>
-  <% end %>
-  <a href="/articles?page=<%= @current_page_num %>&tag=動画">動画</a></li>
-  
-  <% if @search_tag == "猫カフェ" then %>
-  <li class="active">
-  <% else %>
-  <li>
-  <% end %>
-  <a href="/articles?page=<%= @current_page_num %>&tag=猫カフェ">猫カフェ</a></li>
-
-
-  <% if @search_tag == "グッズ" then %>
-  <li class="active">
-  <% else %>
-  <li>
-  <% end %>
-  <a href="/articles?page=<%= @current_page_num %>&tag=グッズ">グッズ</a></li>
-</ul>
 
     <div class="col-xs-9">
       <h1 class="page-header">what's new</h1>
@@ -80,7 +41,7 @@
   <div class="well">
       <div class="media">
         <a class="pull-left" href="/articles/<%= article['id'] %>">
-        <img class="media-object" width=150 src=<%= article['thumbnail_url'] %> onerror="this.src='./assets/thumbnail_150.jpg';">
+        <img class="media-object" width=150 src=<%= article['thumbnail_url'] %> onerror="this.src='<%= @thumbnail_image %>';">
       </a>
       <div class="media-body">
         <h4 class="media-heading"><a href="/articles/<%= article['id'] %>"><%= article['title'] %></a></h4>
