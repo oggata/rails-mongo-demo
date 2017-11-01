@@ -27,7 +27,7 @@
 
 <div class="panel panel-default">
 <% @article.tags.each do |tag| %>
-<a href="/lists?tag=<%= tag %>">
+<a href="/list/<%= tag %>/1">
   <span class="badge badge-pill badge-default">
     <%= tag %>
   </span>

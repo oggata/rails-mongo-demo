@@ -25,10 +25,9 @@ class Tasks::Search
 						BatchesHelper.openUrlAndSaveSite(search_urls[0])
 						sleep(3)
 					end
-				
 				rescue Exception => e
 					p "----------------------->error"
-					p e
+					#p e
 					next
 				end
 			end

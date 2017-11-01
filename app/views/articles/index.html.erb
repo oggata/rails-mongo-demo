@@ -12,7 +12,7 @@
   <% else %>
     <li>
     <% end %>
-    <a href="/articles?page=<%= @current_page_num %>&tag=<%= tab %>"><%=  tab %></a>
+    <a href="/list/<%= tab %>/<%= @current_page_num %>"><%=  tab %></a>
   </li>
 <% end %>
 
@@ -67,8 +67,6 @@
        </div>
     </div>
   </div>
-
-
 
 
       <% end %>

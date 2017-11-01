@@ -6,8 +6,7 @@ Bundler.require
 class Tasks::Batch
 	def self.execute
 
-		logger = Logger.new('log/development.log')
-    	#logger.debug(User.first().to_yaml)
+		logger = Logger.new('log/batch.log')
 
 		p "start"
 		count = Site.getSiteCount()
@@ -15,43 +14,41 @@ class Tasks::Batch
 		@sites = Site.skip(randId).limit(1)
 		addCnt = 0
 		for site in @sites do
+
 			#取得元のサイトを設定
 			p site.title
 			origin_page_title = site.title
 			origin_page_url = site.url
 			origin_catgory_name = site.category_name
 
+			#タグ
 			@tags = []
-
-if site.tag1
-			if site.tag1.length > 0
-				@tags.push(site.tag1)
+			if site.tag1
+				if site.tag1.length > 0
+					@tags.push(site.tag1)
+				end
 			end
-end
-
-if site.tag2
-			if site.tag2.length > 0
-				@tags.push(site.tag2)
+			if site.tag2
+				if site.tag2.length > 0
+					@tags.push(site.tag2)
+				end
 			end
-end
-
-if site.tag3
-			if site.tag3.length > 0
-				@tags.push(site.tag3)
+			if site.tag3
+				if site.tag3.length > 0
+					@tags.push(site.tag3)
+				end
 			end
-end
-
-if site.tag4
-			if site.tag4.length > 0
-				@tags.push(site.tag4)
+			if site.tag4
+				if site.tag4.length > 0
+					@tags.push(site.tag4)
+				end
 			end
-end
-
-if site.tag5
-			if site.tag5.length > 0
-				@tags.push(site.tag5)
+			if site.tag5
+				if site.tag5.length > 0
+					@tags.push(site.tag5)
+				end
 			end
-end
+
 			#サイト名もタグに入れる
 			@tags.push(origin_page_title)
 
@@ -63,14 +60,12 @@ end
 					if !page.url then
 						next
 					end
-
 					#上限は300件
 					addCnt+=1
 					if addCnt > 300
 						p "finish"
 						break
 					end
-
 					#ここから処理開始
 					begin
 						p "begin"
@@ -87,12 +82,15 @@ end
 						p "----------------------->update"
 						rescue Mongoid::Errors::DocumentNotFound => e
 							p "----------------------->insert"
-							p e
+							#p e
+							logger.info(e)
+
 							article = Article.new
 							setArticles = BatchesHelper.openUrlAndSaveArticle(article,page.url,title_jp,origin_page_title,origin_page_url,origin_catgory_name,@tags)
 						rescue Exception => e
 							p "----------------------->error"
-							p e
+							#p e
+							logger.info(e)
 							next
 					end
 				end

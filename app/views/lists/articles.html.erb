@@ -46,14 +46,14 @@
         <ul class="pagination pagination-lg">
           <li class="disabled"><span><<</span></li>
           <% if @current_page_num.to_i - 2 >= 1 then %>
-                    <li><a href="/lists?tag=<%= @search_tag %>&page=<%= @current_page_num.to_i - 2 %>"><%= @current_page_num.to_i - 2 %></a></li>
+                    <li><a href="/list/<%= @search_tag %>/<%= @current_page_num.to_i - 2 %>"><%= @current_page_num.to_i - 2 %></a></li>
           <% end %>
           <% if @current_page_num.to_i - 1 >= 1 then %>
-                    <li><a href="/lists?tag=<%= @search_tag %>&page=<%= @current_page_num.to_i - 1 %>"><%= @current_page_num.to_i - 1 %></a></li>
+                    <li><a href="/list/<%= @search_tag %>/<%= @current_page_num.to_i - 1 %>"><%= @current_page_num.to_i - 1 %></a></li>
           <% end %>
           <li class="active"><span><%= @current_page_num %></span></li>
-          <li><a href="/lists?tag=<%= @search_tag %>&page=<%= @current_page_num.to_i + 1 %>"><%= @current_page_num.to_i + 1 %></a></li>
-          <li><a href="/lists?tag=<%= @search_tag %>&page=<%= @current_page_num.to_i + 2 %>"><%= @current_page_num.to_i + 2 %></a></li>
+          <li><a href="/list/<%= @search_tag %>/<%= @current_page_num.to_i + 1 %>"><%= @current_page_num.to_i + 1 %></a></li>
+          <li><a href="/list/<%= @search_tag %>/<%= @current_page_num.to_i + 2 %>"><%= @current_page_num.to_i + 2 %></a></li>
           <li class="disabled"><span>>></span></li>
         </ul>
       </div>
