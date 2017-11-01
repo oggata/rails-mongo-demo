@@ -88,6 +88,13 @@ module BatchesHelper
 		article.category_name = origin_catgory_name
 		article.site_name = origin_page_title
 
+		#個別
+		for tag_txt in tags do
+		  tag = Tag.new
+		  tag.text = tag_txt
+		  tag.save
+		end
+
 		#画像
 		if image_array.length >= 1
 			article.images = image_array
