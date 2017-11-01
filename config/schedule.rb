@@ -4,6 +4,7 @@ set :output, 'log/cron.log'
 #bundle exec rails runner Tasks::Batch.execute
 every 10.minute do
   runner "Tasks::Batch.execute"
+  runner "Tasks::Search.execute"
 end
 
 # Use this file to easily define all of your cron jobs.

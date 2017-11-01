@@ -23,7 +23,7 @@ class Tasks::Search
 					doc.xpath('//h3/a').each do |link|
 						search_urls = CGI.parse(link[:href])["/url?q"]
 						BatchesHelper.openUrlAndSaveSite(search_urls[0])
-						sleep(3)
+						sleep(10)
 					end
 				rescue Exception => e
 					p "----------------------->error"
