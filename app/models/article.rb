@@ -99,6 +99,11 @@ class Article
     return @related_articles
   end
 
+  def self.getArticleCount
+    count = Article.count()
+    return count
+  end
+
 end
 
 #確認
@@ -112,9 +117,13 @@ end
 #multi key index
 #db.articles.createIndex({tags: 1})
 #db.articles.createIndex({weight:1})
+#db.articles.createIndex({created_at:1})
+
 
 #unique index
 #db.articles.ensureIndex({url:1},{unique:true});
+
+#db.tags.ensureIndex({text:1},{unique:true});
 
 =begin
   

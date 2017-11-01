@@ -94,4 +94,12 @@ class ApplicationController < ActionController::Base
 	end
 	helper_method :top_tabs
 
+    def is_admin
+      if current_user.email == ENV["ADMIN_EMAIL"] then
+        return true
+      else
+        redirect_to("/")
+        return false
+      end
+    end
 end

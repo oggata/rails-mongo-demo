@@ -1,8 +1,8 @@
 class CatsController < ApplicationController
   before_action :set_cat, only: [:show, :edit, :update, :destroy]
-
   protect_from_forgery :except => [:create]
-
+  before_action :authenticate_user!
+  before_action :is_admin
   # GET /cats
   # GET /cats.json
   def index
