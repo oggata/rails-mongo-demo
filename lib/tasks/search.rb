@@ -1,5 +1,5 @@
 #rails runner Tasks::Search.execute
-
+# encoding: UTF-8
 require 'bundler'
 Bundler.require
 
