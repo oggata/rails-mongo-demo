@@ -26,6 +26,10 @@ $ bundle exec rails server
 $ sudo service nginx start
 $ bundle exec pumactl start
 
+#SITEMAP
+$ bundle exec rake sitemap:install
+$ bundle exec rake sitemap:refresh
+
 UBUNTU
 #
 sudo apt-get update
